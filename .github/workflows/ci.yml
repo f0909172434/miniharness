@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test deps
+        run: pip install pytest
+      - name: Unit tests (core + academy structure)
+        run: python -m pytest -q
+      - name: Academy manifest validation
+        run: python3 tools/academy.py validate
+      - name: Offline smoke demos
+        run: |
+          python3 demos/demo_mock.py > /dev/null
+          python3 demos/demo_from_zero.py > /dev/null
+          NO_COLOR=1 python3 demos/demo_eval.py --quiet

@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+.DS_Store
+
+# demo_cli.py 的互動工作區
+workspace_cli/
+
+# 動手營的學習者作業（不想提交就保持忽略）
+tutorial/my_harness.py
+
+# 學院學習者的個人進度
+academy/progress.json
+
+# 前端站點（site/）的構建產物與依賴
+site/node_modules/
+site/dist/
+
+.mimosa/

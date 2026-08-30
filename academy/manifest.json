@@ -1,0 +1,552 @@
+{
+  "version": "1.0",
+  "default_locale": "zh-TW",
+  "locales": ["zh-TW", "en"],
+  "description": {
+    "zh-TW": "MiniAcademy：從完全沒有計算機基礎到 AI 研究員的完整教學地圖。",
+    "en": "MiniAcademy: a complete map from zero CS background to AI researcher."
+  },
+  "goal_levels": {
+    "know": "能解釋/能講清楚（理解層）",
+    "do": "能獨立做出（技能層）",
+    "build": "能做出可展示的成品（創作層）"
+  },
+  "evidence_kinds": {
+    "self": "自評（有明確的自測清單）",
+    "checker": "自動檢查器驗收（verify 欄位給出命令）",
+    "project": "專案產出（由導師/同伴/自我按規格驗收）",
+    "portfolio": "對外作品（公開可查：PR、博客、報告）"
+  },
+  "stages": [
+    {
+      "id": 0,
+      "title": {"zh-TW": "零基礎起步", "en": "Absolute Beginnings"},
+      "tagline": {"zh-TW": "終端機、檔案、第一支程式：把電腦從黑箱變成工具", "en": "Terminal, files, and your first program"},
+      "exit": ["G0.5", "G0.9", "G0.12"],
+      "modules": [
+        {
+          "id": "s0-terminal",
+          "title": {"zh-TW": "終端機與檔案系統", "en": "Terminal and Filesystem"},
+          "hours": 3,
+          "status": "ready",
+          "prerequisites": [],
+          "goals": ["G0.1", "G0.2", "G0.3", "G0.4"],
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-0/terminal-first-steps.md"], "en": []}
+        },
+        {
+          "id": "s0-python",
+          "title": {"zh-TW": "第一支程式", "en": "Your First Program"},
+          "hours": 4,
+          "status": "draft",
+          "prerequisites": ["G0.2"],
+          "goals": ["G0.5", "G0.6", "G0.7", "G0.8", "G0.9"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s0-howto",
+          "title": {"zh-TW": "如何學會學習", "en": "Learning How to Learn"},
+          "hours": 2,
+          "status": "draft",
+          "prerequisites": [],
+          "goals": ["G0.10", "G0.11", "G0.12"],
+          "content": {"zh-TW": [], "en": []}
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": {"zh-TW": "Python 程式核心", "en": "Python Programming Core"},
+      "tagline": {"zh-TW": "能獨立寫出、除錯並交付一個命令行工具", "en": "Write, debug, and ship a CLI tool"},
+      "exit": ["G1.6", "G1.14", "G1.20"],
+      "modules": [
+        {
+          "id": "s1-core",
+          "title": {"zh-TW": "變數、型別與控制流", "en": "Variables, Types, Control Flow"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G0.6"],
+          "goals": ["G1.1", "G1.2", "G1.3", "G1.4"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s1-data",
+          "title": {"zh-TW": "資料結構", "en": "Data Structures"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G1.2", "G1.3"],
+          "goals": ["G1.5", "G1.6", "G1.7"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s1-func",
+          "title": {"zh-TW": "函式與模組", "en": "Functions and Modules"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G1.6"],
+          "goals": ["G1.8", "G1.9", "G1.10", "G1.11"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s1-debug",
+          "title": {"zh-TW": "錯誤、異常與除錯", "en": "Errors, Exceptions, Debugging"},
+          "hours": 5,
+          "status": "draft",
+          "prerequisites": ["G1.8"],
+          "goals": ["G1.12", "G1.13", "G1.14", "G1.15"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s1-files",
+          "title": {"zh-TW": "文字檔案處理", "en": "Text and File Processing"},
+          "hours": 5,
+          "status": "draft",
+          "prerequisites": ["G1.13"],
+          "goals": ["G1.16", "G1.17"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s1-git",
+          "title": {"zh-TW": "Git 生存", "en": "Git Survival"},
+          "hours": 4,
+          "status": "draft",
+          "prerequisites": ["G1.10"],
+          "goals": ["G1.18", "G1.19"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s1-project",
+          "title": {"zh-TW": "專案：命令行小工具", "en": "Project: A CLI Tool"},
+          "hours": 4,
+          "status": "draft",
+          "prerequisites": ["G1.17", "G1.18"],
+          "goals": ["G1.20", "G1.21"],
+          "content": {"zh-TW": [], "en": []}
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": {"zh-TW": "工程與系統基礎", "en": "Engineering and Systems Foundations"},
+      "tagline": {"zh-TW": "網路、測試、工程化：從會寫代碼到會做軟體", "en": "Network, testing, packaging: from code to software"},
+      "exit": ["G2.6", "G2.11", "G2.20"],
+      "modules": [
+        {
+          "id": "s2-internet",
+          "title": {"zh-TW": "網際網路如何工作", "en": "How the Internet Works"},
+          "hours": 5,
+          "status": "draft",
+          "prerequisites": ["G1.20"],
+          "goals": ["G2.1", "G2.2", "G2.3"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-data",
+          "title": {"zh-TW": "資料格式", "en": "Data Formats"},
+          "hours": 4,
+          "status": "draft",
+          "prerequisites": ["G1.16"],
+          "goals": ["G2.4", "G2.5"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-testing",
+          "title": {"zh-TW": "測試與除錯方法論", "en": "Testing and Debugging Methodology"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G1.21"],
+          "goals": ["G2.6", "G2.7", "G2.8"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-eng",
+          "title": {"zh-TW": "專案工程化", "en": "Project Engineering"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G1.20"],
+          "goals": ["G2.9", "G2.10", "G2.11"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-algo",
+          "title": {"zh-TW": "演算法與複雜度入門", "en": "Algorithms and Complexity"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G1.6"],
+          "goals": ["G2.12", "G2.13", "G2.14"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-db",
+          "title": {"zh-TW": "SQL 入門", "en": "SQL Basics"},
+          "hours": 4,
+          "status": "draft",
+          "prerequisites": ["G1.17"],
+          "goals": ["G2.15", "G2.16"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-collab",
+          "title": {"zh-TW": "協作與自動化", "en": "Collaboration and Automation"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G2.7", "G2.9"],
+          "goals": ["G2.17", "G2.18", "G2.19"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s2-project",
+          "title": {"zh-TW": "專案：資料看板", "en": "Project: A Data Dashboard"},
+          "hours": 3,
+          "status": "draft",
+          "prerequisites": ["G2.11", "G2.18", "G2.19"],
+          "goals": ["G2.20"],
+          "content": {"zh-TW": [], "en": []}
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": {"zh-TW": "數學與機器學習", "en": "Math and Machine Learning"},
+      "tagline": {"zh-TW": "夠用的數學 + 完整的 ML 流水線：讓模型為你工作", "en": "Just-enough math plus a full ML pipeline"},
+      "exit": ["G3.7", "G3.17", "G3.19"],
+      "modules": [
+        {
+          "id": "s3-linalg",
+          "title": {"zh-TW": "線性代數", "en": "Linear Algebra"},
+          "hours": 10,
+          "status": "draft",
+          "prerequisites": ["G2.20"],
+          "goals": ["G3.1", "G3.2", "G3.3", "G3.4"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s3-calc",
+          "title": {"zh-TW": "微積分要素", "en": "Calculus Essentials"},
+          "hours": 8,
+          "status": "draft",
+          "prerequisites": ["G3.2"],
+          "goals": ["G3.5", "G3.6", "G3.7"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s3-prob",
+          "title": {"zh-TW": "機率與統計", "en": "Probability and Statistics"},
+          "hours": 10,
+          "status": "draft",
+          "prerequisites": [],
+          "goals": ["G3.8", "G3.9", "G3.10"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s3-numpy",
+          "title": {"zh-TW": "資料科學工具鏈", "en": "Data Science Toolchain"},
+          "hours": 8,
+          "status": "draft",
+          "prerequisites": ["G3.2", "G1.17"],
+          "goals": ["G3.11", "G3.12", "G3.13"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s3-ml",
+          "title": {"zh-TW": "機器學習核心概念", "en": "Machine Learning Core Concepts"},
+          "hours": 12,
+          "status": "draft",
+          "prerequisites": ["G3.7", "G3.10", "G3.11"],
+          "goals": ["G3.14", "G3.15", "G3.16", "G3.17", "G3.18"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s3-project",
+          "title": {"zh-TW": "專案：完整 ML 流水線", "en": "Project: An End-to-End ML Pipeline"},
+          "hours": 12,
+          "status": "draft",
+          "prerequisites": ["G3.12", "G3.17"],
+          "goals": ["G3.19", "G3.20"],
+          "content": {"zh-TW": [], "en": []}
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": {"zh-TW": "深度學習與大語言模型", "en": "Deep Learning and LLMs"},
+      "tagline": {"zh-TW": "從張量到 Transformer：親手訓練自己的小模型", "en": "From tensors to Transformers: train your own small LM"},
+      "exit": ["G4.10", "G4.14", "G4.19"],
+      "modules": [
+        {
+          "id": "s4-torch",
+          "title": {"zh-TW": "PyTorch 與自動微分", "en": "PyTorch and Autograd"},
+          "hours": 10,
+          "status": "draft",
+          "prerequisites": ["G3.19"],
+          "goals": ["G4.1", "G4.2", "G4.3"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s4-training",
+          "title": {"zh-TW": "訓練全流程", "en": "The Training Loop"},
+          "hours": 12,
+          "status": "draft",
+          "prerequisites": ["G4.3"],
+          "goals": ["G4.4", "G4.5", "G4.6"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s4-arch",
+          "title": {"zh-TW": "架構巡禮", "en": "An Architecture Tour"},
+          "hours": 8,
+          "status": "draft",
+          "prerequisites": ["G4.4"],
+          "goals": ["G4.7", "G4.8"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s4-transformer",
+          "title": {"zh-TW": "Transformer 精讀", "en": "Transformer Deep Dive"},
+          "hours": 16,
+          "status": "draft",
+          "prerequisites": ["G4.7"],
+          "goals": ["G4.9", "G4.10", "G4.11"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s4-token",
+          "title": {"zh-TW": "Tokenizer 與資料", "en": "Tokenizers and Data"},
+          "hours": 6,
+          "status": "draft",
+          "prerequisites": ["G2.18"],
+          "goals": ["G4.12", "G4.13"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s4-lm",
+          "title": {"zh-TW": "訓練自己的小模型", "en": "Train Your Own Small LM"},
+          "hours": 18,
+          "status": "draft",
+          "prerequisites": ["G4.10", "G4.12"],
+          "goals": ["G4.14", "G4.15", "G4.16"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s4-eval",
+          "title": {"zh-TW": "評估與基準", "en": "Evaluation and Benchmarks"},
+          "hours": 10,
+          "status": "draft",
+          "prerequisites": ["G4.14"],
+          "goals": ["G4.17", "G4.18", "G4.19"],
+          "content": {"zh-TW": [], "en": []}
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": {"zh-TW": "Agent 工程與研究方法", "en": "Agent Engineering and Research Methods"},
+      "tagline": {"zh-TW": "MiniHarness 全套 + 研究方法論：成為能獨立產出的人", "en": "The full MiniHarness plus research methodology"},
+      "exit": ["G5.3", "G5.12", "G5.14", "G5.15"],
+      "modules": [
+        {
+          "id": "s5-api",
+          "title": {"zh-TW": "LLM API 工程", "en": "LLM API Engineering"},
+          "hours": 8,
+          "status": "draft",
+          "prerequisites": ["G2.20"],
+          "goals": ["G5.1", "G5.2"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s5-harness",
+          "title": {"zh-TW": "Agent Harness（MiniHarness 全套）", "en": "Agent Harness (the full MiniHarness)"},
+          "hours": 16,
+          "status": "ready",
+          "prerequisites": ["G1.20", "G2.6"],
+          "goals": ["G5.3", "G5.4", "G5.5", "G5.6"],
+          "content": {
+            "zh-TW": [
+              "docs/00-overview.md",
+              "docs/01-agent-loop.md",
+              "docs/02-protocol.md",
+              "docs/03-tools.md",
+              "docs/04-context.md",
+              "docs/05-memory.md",
+              "docs/06-sandbox.md",
+              "docs/07-eval.md",
+              "docs/08-roadmap.md",
+              "docs/09-from-zero.md",
+              "tutorial/README.md",
+              "tutorial/steps/step-01-loop.md",
+              "tutorial/steps/step-02-protocol.md",
+              "tutorial/steps/step-03-tools.md",
+              "tutorial/steps/step-04-guard-files.md",
+              "tutorial/steps/step-05-repair.md",
+              "tutorial/steps/step-06-context.md",
+              "tutorial/steps/step-07-eval.md",
+              "tutorial/steps/step-08-graduation.md"
+            ],
+            "en": []
+          }
+        },
+        {
+          "id": "s5-context",
+          "title": {"zh-TW": "上下文工程與 RAG", "en": "Context Engineering and RAG"},
+          "hours": 10,
+          "status": "draft",
+          "prerequisites": ["G5.4"],
+          "goals": ["G5.7", "G5.8"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s5-safety",
+          "title": {"zh-TW": "Agent 評測與安全", "en": "Agent Evaluation and Safety"},
+          "hours": 10,
+          "status": "draft",
+          "prerequisites": ["G5.5", "G2.18"],
+          "goals": ["G5.9", "G5.10"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s5-research",
+          "title": {"zh-TW": "研究方法", "en": "Research Methodology"},
+          "hours": 16,
+          "status": "draft",
+          "prerequisites": ["G4.19", "G5.10"],
+          "goals": ["G5.11", "G5.12", "G5.13", "G5.14"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s5-oss",
+          "title": {"zh-TW": "開源與影響", "en": "Open Source and Impact"},
+          "hours": 8,
+          "status": "draft",
+          "prerequisites": ["G5.14"],
+          "goals": ["G5.15", "G5.16"],
+          "content": {"zh-TW": [], "en": []}
+        },
+        {
+          "id": "s5-frontier",
+          "title": {"zh-TW": "前沿地圖（選讀）", "en": "The Frontier Map (elective)"},
+          "hours": 12,
+          "status": "draft",
+          "prerequisites": ["G5.11"],
+          "goals": ["G5.17", "G5.18"],
+          "content": {"zh-TW": [], "en": []}
+        }
+      ]
+    }
+  ],
+  "goals": [
+    {"id": "G0.1", "level": "do", "evidence": "self", "statement": "能打開終端機並執行第一條命令（pwd 或 ls/dir）"},
+    {"id": "G0.2", "level": "do", "evidence": "self", "statement": "能用 cd/ls 辨識目前所在資料夾並在各目錄間切換"},
+    {"id": "G0.3", "level": "do", "evidence": "self", "statement": "能建立、重新命名、刪除檔案與資料夾"},
+    {"id": "G0.4", "level": "know", "evidence": "self", "statement": "能解釋相對路徑與絕對路徑的差別並各舉一例"},
+    {"id": "G0.5", "level": "do", "evidence": "self", "statement": "能安裝 Python 並用 python3 --version（或 python --version）驗證"},
+    {"id": "G0.6", "level": "do", "evidence": "self", "statement": "能建立 .py 檔並在終端機執行，輸出 Hello, World"},
+    {"id": "G0.7", "level": "do", "evidence": "self", "statement": "能用 print 與 input 寫一個問答小程式"},
+    {"id": "G0.8", "level": "know", "evidence": "self", "statement": "能說出「程式是被電腦逐行執行的文字」並預測三行程式碼的輸出順序"},
+    {"id": "G0.9", "level": "do", "evidence": "self", "statement": "能讀懂一個 NameError 並修復拼錯的變數名"},
+    {"id": "G0.10", "level": "know", "evidence": "self", "statement": "能複述「錯誤訊息是提示而不是失敗」並舉出自己的一次實例"},
+    {"id": "G0.11", "level": "do", "evidence": "self", "statement": "能把一個報錯原文貼進搜尋引擎並找到可用的解答"},
+    {"id": "G0.12", "level": "do", "evidence": "project", "statement": "建立每日 30 分鐘練習紀錄並連續保持 7 天"},
+
+    {"id": "G1.1", "level": "do", "evidence": "self", "statement": "能用變數與 int/float/str/bool 四種型別寫小程式"},
+    {"id": "G1.2", "level": "do", "evidence": "self", "statement": "能用 if/elif/else 寫出三分支邏輯並全部分支測試過"},
+    {"id": "G1.3", "level": "do", "evidence": "self", "statement": "能用 for/while 寫循環並在紙上手動推演循環變數的每一步"},
+    {"id": "G1.4", "level": "know", "evidence": "self", "statement": "能解釋可變物件與不可變物件的差別並舉例說明副作用"},
+    {"id": "G1.5", "level": "do", "evidence": "self", "statement": "能針對問題選用 list/tuple/dict/set 並說明理由"},
+    {"id": "G1.6", "level": "do", "evidence": "checker", "statement": "能用 dict 統計一段文字的詞頻並按次數排序輸出"},
+    {"id": "G1.7", "level": "know", "evidence": "self", "statement": "能說出 list 與 tuple、dict 與 set 的選型理由與典型場景"},
+    {"id": "G1.8", "level": "do", "evidence": "self", "statement": "能定義帶參數與返回值的函式並撰寫 docstring"},
+    {"id": "G1.9", "level": "do", "evidence": "project", "statement": "完成一次真實重構：把重複程式碼提取成函式且行為不變"},
+    {"id": "G1.10", "level": "do", "evidence": "self", "statement": "能把程式拆成多個模組並用 import 組織"},
+    {"id": "G1.11", "level": "know", "evidence": "self", "statement": "能預測變數遮蔽（區域/全域作用域）的行為並解釋原因"},
+    {"id": "G1.12", "level": "know", "evidence": "self", "statement": "能區分語法錯誤、執行期異常與邏輯錯誤並各舉一例"},
+    {"id": "G1.13", "level": "do", "evidence": "self", "statement": "能用 try/except/finally 處理可預期異常（如檔案不存在）"},
+    {"id": "G1.14", "level": "do", "evidence": "project", "statement": "用 print/logging 與二分注釋法定位並修復一個真實 bug"},
+    {"id": "G1.15", "level": "know", "evidence": "self", "statement": "能讀懂 traceback：指出出錯檔案、行號與完整呼叫鏈"},
+    {"id": "G1.16", "level": "do", "evidence": "self", "statement": "能讀寫 UTF-8 文字檔並處理編碼錯誤（errors 參數）"},
+    {"id": "G1.17", "level": "do", "evidence": "self", "statement": "能解析 CSV 並輸出簡單統計（計數、求和、分組）"},
+    {"id": "G1.18", "level": "do", "evidence": "self", "statement": "能用 git init/add/commit 管理一個小專案的完整歷史"},
+    {"id": "G1.19", "level": "do", "evidence": "self", "statement": "能讀懂 git log/diff 並安全地回退一次錯誤提交"},
+    {"id": "G1.20", "level": "build", "evidence": "project", "statement": "獨立完成 ≥100 行的命令行小工具，含 README 與 3 個使用範例"},
+    {"id": "G1.21", "level": "build", "evidence": "checker", "statement": "為自己的工具寫 ≥5 個 assert 自測並全部通過"},
+
+    {"id": "G2.1", "level": "know", "evidence": "self", "statement": "能畫圖解釋「瀏覽器輸入 URL 之後發生什麼」（DNS/TCP/HTTP 簡化版）"},
+    {"id": "G2.2", "level": "do", "evidence": "self", "statement": "能用 curl 或 Python 的 urllib 讀取一個公開 API 的回應"},
+    {"id": "G2.3", "level": "know", "evidence": "self", "statement": "能解釋請求/回應結構、常見狀態碼與 header 的含義"},
+    {"id": "G2.4", "level": "do", "evidence": "self", "statement": "能用 json.dumps/loads 在物件與字串之間往返轉換"},
+    {"id": "G2.5", "level": "do", "evidence": "self", "statement": "能把 CSV 轉成 JSON 並反向匯出"},
+    {"id": "G2.6", "level": "do", "evidence": "checker", "statement": "能用 pytest 為一個函式寫正常/邊界/異常三類測試並全綠"},
+    {"id": "G2.7", "level": "do", "evidence": "self", "statement": "體驗一次 TDD 迴圈：先寫失敗測試，再讓它變綠"},
+    {"id": "G2.8", "level": "know", "evidence": "self", "statement": "能解釋單元測試與整合測試的差別及測試金字塔"},
+    {"id": "G2.9", "level": "do", "evidence": "self", "statement": "能用 venv 隔離環境並用 requirements.txt 鎖定依賴"},
+    {"id": "G2.10", "level": "do", "evidence": "self", "statement": "能按 src/tests/README 結構組織一個可安裝的專案"},
+    {"id": "G2.11", "level": "do", "evidence": "project", "statement": "寫出讓陌生人 5 分鐘內跑起來的 README"},
+    {"id": "G2.12", "level": "know", "evidence": "self", "statement": "能用大 O 描述常見操作的複雜度並解釋其含義"},
+    {"id": "G2.13", "level": "do", "evidence": "self", "statement": "能實作二分搜尋與一種簡單排序並分析複雜度"},
+    {"id": "G2.14", "level": "do", "evidence": "self", "statement": "能用 dict/set 把一個 O(n²) 的解法降到 O(n)"},
+    {"id": "G2.15", "level": "do", "evidence": "self", "statement": "能建表、插入資料並用 SELECT/WHERE/ORDER BY/GROUP BY 查詢"},
+    {"id": "G2.16", "level": "know", "evidence": "self", "statement": "能解釋主鍵與索引各自的作用"},
+    {"id": "G2.17", "level": "do", "evidence": "portfolio", "statement": "用 branch + 提交一個 PR 並處理 review 意見"},
+    {"id": "G2.18", "level": "do", "evidence": "self", "statement": "能用正則從非結構化文字中抽取目標資訊"},
+    {"id": "G2.19", "level": "do", "evidence": "self", "statement": "寫一個排程腳本或 CI 步驟自動執行測試"},
+    {"id": "G2.20", "level": "build", "evidence": "project", "statement": "完成「呼叫公開 API → 清洗 → 儲存 → 呈現」的小專案（含測試）"},
+
+    {"id": "G3.1", "level": "know", "evidence": "self", "statement": "能解釋向量/矩陣/張量的幾何含義與資料含義"},
+    {"id": "G3.2", "level": "do", "evidence": "self", "statement": "能手算 2x2 矩陣乘法並用 numpy 驗證結果"},
+    {"id": "G3.3", "level": "know", "evidence": "self", "statement": "能解釋內積為何衡量兩個向量的「相似度」"},
+    {"id": "G3.4", "level": "know", "evidence": "self", "statement": "能說出矩陣乘法對應神經網路中的哪個操作"},
+    {"id": "G3.5", "level": "know", "evidence": "self", "statement": "能計算基本函式的導數並解釋其幾何意義"},
+    {"id": "G3.6", "level": "know", "evidence": "self", "statement": "能用鏈式法則分解複合函式的梯度"},
+    {"id": "G3.7", "level": "know", "evidence": "self", "statement": "能解釋「梯度指向上升最快方向」與梯度下降的關係"},
+    {"id": "G3.8", "level": "know", "evidence": "self", "statement": "能計算期望值與條件機率並各舉一個生活例子"},
+    {"id": "G3.9", "level": "know", "evidence": "self", "statement": "能解釋均勻/常態/伯努利分佈及其參數含義"},
+    {"id": "G3.10", "level": "know", "evidence": "self", "statement": "能用自己的話解釋抽樣誤差、信賴區間與 p 值"},
+    {"id": "G3.11", "level": "do", "evidence": "self", "statement": "能用 numpy 完成向量化運算與廣播，避免顯式 for 循環"},
+    {"id": "G3.12", "level": "do", "evidence": "self", "statement": "能用 pandas 完成載入/篩選/分組聚合"},
+    {"id": "G3.13", "level": "do", "evidence": "self", "statement": "能用 matplotlib 畫出能說明問題的圖（並有軸標籤與標題）"},
+    {"id": "G3.14", "level": "know", "evidence": "self", "statement": "能區分監督/非監督/強化學習並各舉一個真實應用"},
+    {"id": "G3.15", "level": "do", "evidence": "self", "statement": "能解釋損失函數、梯度下降、學習率三者的關係"},
+    {"id": "G3.16", "level": "do", "evidence": "self", "statement": "能診斷過擬合/欠擬合並提出至少兩種對策"},
+    {"id": "G3.17", "level": "do", "evidence": "checker", "statement": "能用交叉驗證與恰當指標（precision/recall/F1）評估模型"},
+    {"id": "G3.18", "level": "know", "evidence": "self", "statement": "能解釋「資料洩漏」並在一個案例中識別它"},
+    {"id": "G3.19", "level": "build", "evidence": "project", "statement": "完成「載入→清洗→特徵→訓練→評估→報告」的端到端 ML 專案"},
+    {"id": "G3.20", "level": "build", "evidence": "project", "statement": "完成一次單變因對照實驗並正確解讀結果"},
+
+    {"id": "G4.1", "level": "do", "evidence": "self", "statement": "能用 tensor 完成前向計算並呼叫 backward 得到梯度"},
+    {"id": "G4.2", "level": "know", "evidence": "self", "statement": "能解釋 autograd 計算圖與手推鏈式法則的對應關係"},
+    {"id": "G4.3", "level": "do", "evidence": "self", "statement": "能用 nn.Module 搭建多層感知機並在玩具資料上訓練收斂"},
+    {"id": "G4.4", "level": "do", "evidence": "self", "statement": "能配置 optimizer/scheduler 並從 loss 曲線診斷訓練狀態"},
+    {"id": "G4.5", "level": "do", "evidence": "self", "statement": "能使用 GPU（含 Colab）加速訓練並記錄可復現的實驗元資料"},
+    {"id": "G4.6", "level": "do", "evidence": "self", "statement": "能用 dropout/weight decay/early stopping 改善泛化並說明各自原理"},
+    {"id": "G4.7", "level": "know", "evidence": "self", "statement": "能概述 CNN/RNN/Transformer 的設計動機與取捨"},
+    {"id": "G4.8", "level": "know", "evidence": "self", "statement": "能解釋 Transformer 成為主流的兩個原因（並行性/長程依賴）"},
+    {"id": "G4.9", "level": "do", "evidence": "self", "statement": "能手推 scaled dot-product attention 並說明 Q/K/V 各自的作用"},
+    {"id": "G4.10", "level": "build", "evidence": "project", "statement": "從零實作迷你 Transformer（含 multi-head 與位置編碼）並通過形狀測試"},
+    {"id": "G4.11", "level": "know", "evidence": "self", "statement": "能解釋 residual 連接與 layer norm 在深層網路中的作用"},
+    {"id": "G4.12", "level": "do", "evidence": "self", "statement": "能訓練或使用一個 BPE tokenizer 並解釋詞表大小的取捨"},
+    {"id": "G4.13", "level": "know", "evidence": "self", "statement": "能解釋資料清洗與去重對模型品質的影響"},
+    {"id": "G4.14", "level": "build", "evidence": "project", "statement": "從零預訓練一個字元級/詞級小 LM 並生成可辨認的樣本"},
+    {"id": "G4.15", "level": "build", "evidence": "project", "statement": "用 LoRA 或全量微調完成一次風格/任務遷移"},
+    {"id": "G4.16", "level": "build", "evidence": "project", "statement": "建立小型 benchmark 並報告困惑度與任務分數"},
+    {"id": "G4.17", "level": "know", "evidence": "self", "statement": "能解釋 perplexity 與下游任務評估的差別"},
+    {"id": "G4.18", "level": "do", "evidence": "self", "statement": "能識別基準資料污染並設計避坑方案"},
+    {"id": "G4.19", "level": "build", "evidence": "project", "statement": "復現一個公開基準上的已知數字（在合理誤差內）"},
+
+    {"id": "G5.1", "level": "do", "evidence": "self", "statement": "能設計並迭代 system prompt 以穩定模型輸出格式"},
+    {"id": "G5.2", "level": "do", "evidence": "self", "statement": "能管理一次任務的上下文預算並估算 token 成本"},
+    {"id": "G5.3", "level": "build", "evidence": "checker", "verify": "python3 tutorial/check.py", "statement": "完成動手營 8 步，寫出 my_harness.py 並通過全部檢查"},
+    {"id": "G5.4", "level": "do", "evidence": "self", "statement": "能講清 loop/protocol/tools/context/eval 五件套的職責與取捨"},
+    {"id": "G5.5", "level": "do", "evidence": "project", "statement": "為 harness 增加一個新工具與一個新評測任務（含測試）"},
+    {"id": "G5.6", "level": "build", "evidence": "project", "statement": "完成「從 0 造腦」對比實驗（RuleBrain/NgramBrain/PolicyBrain）並解讀"},
+    {"id": "G5.7", "level": "do", "evidence": "project", "statement": "實作摘要壓縮或檢索增強之一，並用評測驗證收益"},
+    {"id": "G5.8", "level": "know", "evidence": "self", "statement": "能解釋向量檢索的原理與它失效的場景"},
+    {"id": "G5.9", "level": "do", "evidence": "project", "statement": "設計提示注入對抗測試並評估各道防線的攔截率"},
+    {"id": "G5.10", "level": "build", "evidence": "project", "statement": "建立 ≥10 任務的 agent 評測集並報告通過率與失敗模式分析"},
+    {"id": "G5.11", "level": "do", "evidence": "self", "statement": "能 30 分鐘讀完一篇論文並輸出「問題/方法/證據/局限」四欄卡片"},
+    {"id": "G5.12", "level": "build", "evidence": "project", "statement": "復現一篇論文的核心實驗（或其明確標註的縮小版）"},
+    {"id": "G5.13", "level": "build", "evidence": "project", "statement": "設計並執行一次消融實驗，用恰當的統計方法報告差異"},
+    {"id": "G5.14", "level": "build", "evidence": "portfolio", "statement": "寫出可復現的技術報告（代碼+資料+結論+局限）並公開"},
+    {"id": "G5.15", "level": "build", "evidence": "portfolio", "statement": "向開源專案提交一個被合併的 PR，或發布自己的開源專案"},
+    {"id": "G5.16", "level": "build", "evidence": "portfolio", "statement": "發布一篇技術博客或一次演講並收集真實回饋"},
+    {"id": "G5.17", "level": "know", "evidence": "self", "statement": "能畫出當前 LLM/Agent 研究地圖並指出三個開放問題"},
+    {"id": "G5.18", "level": "do", "evidence": "self", "statement": "能對一個熱點主張做「證據強度」的批判性評估"}
+  ]
+}

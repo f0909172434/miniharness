@@ -1,0 +1,586 @@
+/* MiniHarness · 手稿成機
+   視覺語言：工程師手稿。暖紙為底，墨作結構，朱紅只給「模型/能量/故障」。
+   動效語彙：繪製（stroke draw）、通電（power on）、運轉（loop flow）——不用淡入上浮。 */
+
+:root {
+  --paper: #f5efe2;
+  --paper-deep: #ece4d0;
+  --ink: #201b12;
+  --ink-soft: #5c5340;
+  --ink-faint: rgba(32, 27, 18, 0.16);
+  --red: #b3402a;
+  --red-deep: #8f3220;
+  --hairline: 1px solid rgba(32, 27, 18, 0.22);
+  --serif: "Noto Serif TC", "Songti TC", "SimSun", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --maxw: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(179, 64, 42, 0.05), transparent 42%),
+    radial-gradient(ellipse at 85% 100%, rgba(32, 27, 18, 0.06), transparent 40%),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 纸张颗粒 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(32, 27, 18, 0.055) 0.8px, transparent 0.8px);
+  background-size: 7px 7px;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
+
+::selection { background: rgba(179, 64, 42, 0.22); }
+
+a { color: inherit; }
+a:hover { color: var(--red); }
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 14px;
+  z-index: 99;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* ---------------- 章節骨架 ---------------- */
+
+.chapter { position: relative; padding: 18vh 0 10vh; }
+
+.chapter-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.chapter-no {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--red);
+}
+
+.chapter h2 {
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: 0.02em;
+}
+
+.chapter-sub { color: var(--ink-soft); max-width: 620px; margin: 0 0 40px; }
+
+.rule {
+  height: 10px;
+  width: 72px;
+  border: none;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin: 0 0 28px;
+}
+
+/* ---------------- 首屏 ---------------- */
+
+.hero {
+  min-height: 96vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+  margin-bottom: 26px;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 7vw, 74px);
+  line-height: 1.22;
+  font-weight: 600;
+  margin: 0 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.hero h1 .model { color: var(--red); }
+
+.hero h1 .harness { font-family: var(--mono); font-weight: 500; }
+
+.hero-sub {
+  max-width: 560px;
+  color: var(--ink-soft);
+  font-size: 18px;
+}
+
+.hero-loop {
+  position: absolute;
+  right: 2vw;
+  top: 16vh;
+  width: clamp(150px, 20vw, 260px);
+  opacity: 0.9;
+}
+
+.hero-loop .loop-path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.hero-loop .loop-arrow { fill: var(--red); }
+
+.hero-loop .loop-word {
+  font-family: var(--serif);
+  font-size: 30px;
+  fill: var(--red);
+}
+
+.draw-on-load { stroke-dasharray: 760; stroke-dashoffset: 760; animation: draw 2s ease-out 0.3s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.draw-on-load .loop-arrow { opacity: 0; animation: appear 0.4s ease-out 2.1s forwards; }
+@keyframes appear { to { opacity: 1; } }
+
+.spin-slow { transform-origin: 50% 50%; animation: spin 26s linear 2.4s infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.cursor-block {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--red);
+  vertical-align: -0.12em;
+  margin-left: 0.15em;
+  animation: blink 1.15s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.scroll-cue {
+  position: absolute;
+  bottom: 5vh;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scroll-cue::before {
+  content: "";
+  width: 64px;
+  height: 1px;
+  background: var(--ink-soft);
+  animation: cue 2.4s ease-in-out infinite;
+}
+@keyframes cue { 0%, 100% { transform: scaleX(0.35); } 50% { transform: scaleX(1); } }
+.scroll-cue::before { transform-origin: left; }
+
+/* ---------------- 路線（章 A）---------------- */
+
+.path { position: relative; padding-left: 34px; }
+
+.path-line {
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--ink-faint);
+}
+
+.path-line::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform-origin: top;
+  transform: scaleY(var(--draw, 0));
+}
+
+.path-stop { position: relative; padding: 0 0 42px; }
+
+.path-dot {
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.path-stop.lit .path-dot { background: var(--red); border-color: var(--red); color: var(--paper); }
+
+.path-stage {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+}
+
+.path-stop h3 { margin: 2px 0 4px; font-size: 21px; font-weight: 600; }
+.path-stop h3 .hours { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-left: 10px; font-weight: 400; }
+.path-stop p { margin: 0; color: var(--ink-soft); max-width: 560px; }
+
+.path-end {
+  font-family: var(--mono);
+  color: var(--red);
+  letter-spacing: 0.2em;
+  font-size: 14px;
+}
+
+/* ---------------- 循環機器（章 B · 核心裝置）---------------- */
+
+.machine-shell {
+  border: var(--hairline);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  padding: 20px clamp(12px, 2.5vw, 30px) 26px;
+  position: relative;
+}
+
+.machine-shell::after {
+  content: "SIM · 教程算法真實運行";
+  position: absolute;
+  top: -9px;
+  right: 18px;
+  background: var(--paper);
+  padding: 0 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+
+.machine-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 22px; align-items: stretch; }
+
+.machine-svg { width: 100%; height: auto; display: block; }
+
+.machine-svg text { font-family: var(--serif); }
+
+.station circle { transition: fill 0.35s ease, stroke 0.35s ease; }
+.station .st-name { font-size: 20px; font-weight: 600; fill: var(--ink); }
+.station .st-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; fill: var(--ink-soft); }
+
+.station[data-active="true"] circle { stroke-width: 3; }
+.station[data-active="true"] .st-name { fill: var(--red); }
+
+.station-brain circle { stroke: var(--red); fill: rgba(179, 64, 42, 0.06); }
+.station-protocol circle,
+.station-hands circle { stroke: var(--ink); fill: rgba(32, 27, 18, 0.04); }
+
+.machine-shell[data-power="true"] .station-brain[data-active="true"] circle { fill: rgba(179, 64, 42, 0.16); }
+
+.edge {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-dasharray: 5 7;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+}
+
+.machine-shell[data-power="true"] .edge { opacity: 0.75; }
+
+.edge.flowing { stroke-dasharray: 90 460; stroke-width: 2.2; opacity: 1; animation: flow 0.9s linear; }
+@keyframes flow { from { stroke-dashoffset: 550; } to { stroke-dashoffset: 0; } }
+
+/* 視角切換：給「看模型 / 看工程」的教學開關 */
+.machine-shell[data-view="model"] .harness-part { opacity: 0.18; }
+.machine-shell[data-view="model"] .harness-part text { opacity: 0.25; }
+.machine-shell[data-view="harness"] .model-part { opacity: 0.18; }
+
+.machine-aside { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+.btn {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  border: var(--hairline);
+  background: transparent;
+  color: var(--ink);
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.06s ease;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn:active { transform: translateY(1px); }
+.btn[disabled] { opacity: 0.4; cursor: default; }
+.btn[disabled]:hover { background: transparent; color: var(--ink); }
+.btn.primary { border-color: var(--red); color: var(--red); }
+.btn.primary:hover { background: var(--red); color: var(--paper); }
+
+.chip-row { display: flex; gap: 6px; align-items: center; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+.chip {
+  border: var(--hairline);
+  background: transparent;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.chip[data-on="true"] { background: var(--ink); color: var(--paper); }
+
+.lever {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--red-deep);
+  cursor: pointer;
+  user-select: none;
+}
+.lever input { appearance: none; width: 40px; height: 20px; border: 2px solid var(--red); position: relative; cursor: pointer; margin: 0; background: transparent; }
+.lever input::after { content: ""; position: absolute; top: 1px; left: 1px; width: 14px; height: 14px; background: var(--red); transition: transform 0.18s ease; }
+.lever input:checked::after { transform: translateX(20px); }
+.lever input:checked { background: rgba(179, 64, 42, 0.12); }
+
+.history {
+  border: var(--hairline);
+  background: rgba(255, 255, 255, 0.4);
+  height: 300px;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.card { border-left: 3px solid var(--ink); padding: 8px 12px; background: rgba(32, 27, 18, 0.035); animation: stamp 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+@keyframes stamp { 0% { transform: scale(1.03) translateY(-3px); opacity: 0.4; } 100% { transform: none; opacity: 1; } }
+
+.card .role {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.card pre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card.role-brain { border-color: var(--red); }
+.card.role-brain .role { color: var(--red); }
+.card.role-env.error { border-color: var(--red); background: rgba(179, 64, 42, 0.08); }
+.card.role-env.error .role::after { content: " · 自我修復"; color: var(--red); }
+
+.machine-meta {
+  display: flex;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  flex-wrap: wrap;
+}
+
+.ctxbar { height: 6px; border: var(--hairline); position: relative; flex: 1 1 140px; align-self: center; }
+.ctxbar::before { content: ""; position: absolute; inset: 0; background: var(--red); transform-origin: left; transform: scaleX(var(--fill, 0)); transition: transform 0.4s ease; }
+
+.machine-caption { color: var(--ink-soft); font-size: 15px; max-width: 720px; margin-top: 22px; }
+.machine-caption .m { color: var(--red); }
+.machine-caption .h { font-family: var(--mono); font-size: 14px; }
+
+/* ---------------- 星圖（章 C）---------------- */
+
+.sky-shell { border: var(--hairline); position: relative; background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0)); }
+.sky-canvas { display: block; width: 100%; height: auto; cursor: crosshair; }
+
+.sky-legend { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; border-top: var(--hairline); align-items: center; }
+
+.sky-body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+.sky-panel { border-left: var(--hairline); padding: 18px; font-size: 15px; min-height: 300px; }
+.sky-panel .gid { font-family: var(--mono); color: var(--red); letter-spacing: 0.1em; }
+.sky-panel .gmod { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin: 6px 0 12px; }
+.sky-panel .verify { font-family: var(--mono); font-size: 12px; background: rgba(32, 27, 18, 0.05); padding: 8px 10px; margin-top: 12px; overflow-x: auto; }
+.sky-panel .empty { color: var(--ink-soft); }
+
+.sky-check { display: inline-flex; gap: 8px; align-items: center; margin-top: 16px; cursor: pointer; font-family: var(--mono); font-size: 13px; }
+.sky-check input { width: 16px; height: 16px; accent-color: var(--red); cursor: pointer; }
+
+.sky-hint { padding: 10px 16px; border-top: var(--hairline); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-soft); }
+
+.stage-chip[data-on="true"] { background: var(--red); border-color: var(--red); color: var(--paper); }
+
+.sky-canvas { touch-action: manipulation; }
+
+.sky-ring {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  background:
+    radial-gradient(circle at 50% 50%, var(--paper) 0 4.5px, transparent 4.5px),
+    conic-gradient(var(--red) var(--p, 0%), rgba(32, 27, 18, 0.18) 0);
+}
+
+/* ---------------- 工序單（章 D）---------------- */
+
+.camp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: var(--hairline);
+}
+
+.camp-row { border-bottom: var(--hairline); }
+.camp-row:last-child { border-bottom: none; }
+
+.camp-check {
+  display: grid;
+  grid-template-columns: 26px 44px minmax(0, 240px) 1fr auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 15px 18px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.camp-check:hover { background: rgba(32, 27, 18, 0.035); }
+
+.camp-check input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--red);
+  cursor: pointer;
+  justify-self: center;
+  align-self: center;
+}
+
+.camp-num { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+.camp-title { font-weight: 600; }
+.camp-line { color: var(--ink-soft); font-size: 15px; }
+.camp-ref { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; }
+
+.camp-row.done .camp-title { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 1.5px; }
+.camp-row.done .camp-num { color: var(--red); }
+
+.camp-progress {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+
+@media (max-width: 720px) {
+  .camp-check { grid-template-columns: 24px 38px 1fr auto; }
+  .camp-line { grid-column: 3; grid-row: 2; }
+  .camp-ref { grid-row: 2; }
+}
+
+/* ---------------- 動手營（章 D）---------------- */
+
+.camp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0; border: var(--hairline); }
+.camp-item { padding: 18px; border-right: var(--hairline); border-bottom: var(--hairline); }
+.camp-item .n { font-family: var(--mono); color: var(--red); font-size: 12px; }
+.camp-item h3 { margin: 6px 0 4px; font-size: 17px; }
+.camp-item p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+.terminal-block {
+  font-family: var(--mono);
+  font-size: 14px;
+  background: var(--ink);
+  color: #efe7d3;
+  padding: 20px 24px;
+  margin: 30px 0;
+  overflow-x: auto;
+  line-height: 1.9;
+}
+.terminal-block .c { color: #a89878; }
+.terminal-block .r { color: #e8896f; }
+
+/* ---------------- 尾聲 ---------------- */
+
+.finale { text-align: center; padding: 16vh 0 8vh; }
+.finale p { font-size: clamp(20px, 2.6vw, 30px); margin: 0 0 8px; }
+.finale .small { font-size: 14px; color: var(--ink-soft); font-family: var(--mono); letter-spacing: 0.14em; }
+
+footer {
+  border-top: var(--hairline);
+  padding: 26px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ---------------- 響應式與降級 ---------------- */
+
+@media (max-width: 860px) {
+  .machine-grid { grid-template-columns: 1fr; }
+  .sky-body { grid-template-columns: 1fr; }
+  .sky-panel { border-left: none; border-top: var(--hairline); min-height: 0; }
+  .hero-loop { position: static; margin: 30px 0 0; width: 180px; }
+  .chapter { padding: 12vh 0 8vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw-on-load { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }
+  .draw-on-load .loop-arrow { opacity: 1; animation: none; }
+  .spin-slow { animation: none; }
+  .cursor-block { animation: none; }
+  .scroll-cue::before { animation: none; }
+  .edge.flowing { animation: none; stroke-dashoffset: 0; }
+  .card { animation: none; }
+  .path-line::before { transition: none; }
+  html { scroll-behavior: auto; }
+}

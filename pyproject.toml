@@ -1,0 +1,30 @@
+[project]
+name = "miniharness"
+version = "0.1.0"
+description = "MiniHarness —— 教學用最小 Agent Harness：500 行級代碼看懂模型外面那圈「工程腳手架」"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "MiniHarness contributors" }]
+keywords = ["llm", "agent", "harness", "tutorial", "education"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3",
+    "Topic :: Education",
+]
+# 核心包零運行時依賴：stdlib 就夠了。真實 API 對接走 urllib。
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["miniharness"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
