@@ -54,3 +54,15 @@ python3 demos/demo_eval.py --quiet     # 評測 3/3
 ## 倉庫地圖
 
 見 `docs/00-overview.md` 的課程地圖與責任表；改動哪層，就讀對應章節。
+
+## 站點部署（site/ → GitHub Pages）
+
+線上地址：https://f0909172434.github.io/miniharness/（由 gh-pages 分支供給）。
+改動 site/ 後重新部署：
+
+```bash
+cd site && npm run build
+cd dist && git add -A && git commit -m "deploy: site build" && git push -qf origin gh-pages
+```
+
+（site/dist 是一個嵌套的 gh-pages 倉庫，已被主倉庫忽略。）
