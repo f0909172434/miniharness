@@ -584,3 +584,17 @@ footer {
   .path-line::before { transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* 教材入口與自行記錄分開，避免把手動勾選誤認為驗收結果。 */
+.start-links { display:flex;flex-wrap:wrap;gap:12px 26px;margin:24px 0;position:relative;z-index:2; }
+.start-links a { padding:10px 0;text-underline-offset:5px;font-size:15px; }
+.module-status { font:12px/1.7 var(--mono);color:var(--red-deep); }
+.lesson-entry { border-left:2px solid var(--red);padding:12px 16px;margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;background:var(--paper-deep); }
+.lesson-entry strong { font-size:14px; }.lesson-entry a,.lesson-link { font-size:14px;text-underline-offset:5px; }
+.camp-row { position:relative; }.camp-row>a.camp-ref { display:block;margin:0 18px 16px 76px;text-underline-offset:4px;font:13px var(--mono);width:fit-content;padding:8px 0; }
+.terminal-block { overflow-x:auto; }.terminal-block>div { white-space:pre; }
+@media(max-width:600px) { .start-links { gap:8px 18px; }.path-stop .hours { display:block;margin:8px 0; }.camp-row>a.camp-ref { margin-left:45px; } }
+
+.lesson-catalogue { width:100%;font-size:14px; }.lesson-catalogue summary { cursor:pointer;padding:7px 0; }.lesson-catalogue ol { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 24px;padding-left:22px; }.lesson-catalogue a { overflow-wrap:anywhere; }@media(max-width:600px) { .lesson-catalogue ol { grid-template-columns:1fr; } }
+
+@media(max-width:760px) { .chapter.wrap { padding-inline:24px; } }

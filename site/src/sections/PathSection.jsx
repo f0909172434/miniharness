@@ -1,14 +1,13 @@
 import { useRef } from "react";
 import { useScrollProgress } from "../hooks.js";
 
-const STAGES = [
-  { id: 0, title: "零基礎起步", hours: 9, line: "終端機、檔案、第一支程式——把電腦從黑箱變成方向盤。" },
-  { id: 1, title: "Python 程式核心", hours: 36, line: "變量到工程：獨立交付一個命令行工具。" },
-  { id: 2, title: "工程與系統基礎", hours: 40, line: "測試、打包、協作、呼叫 API：從會寫代碼到會做軟體。" },
-  { id: 3, title: "數學與機器學習", hours: 60, line: "夠用的數學 + 一條端到端 ML 流水線。" },
-  { id: 4, title: "深度學習與 LLM", hours: 80, line: "手推注意力，親手訓練自己的小模型。" },
-  { id: 5, title: "Agent 工程與研究方法", hours: 80, line: "MiniHarness 全套 + 復現論文 + 公開作品。" },
-];
+import manifest from "../../../academy/manifest.json";
+const SOURCE = "https://github.com/f0909172434/miniharness/blob/main/";
+const STAGES = manifest.stages.map(stage => ({
+  ...stage,
+  hours: stage.modules.reduce((n, module) => n + module.hours, 0),
+  ready: stage.modules.filter(module => module.status === "ready"),
+}));
 
 /** 章 A：路線坡道被滾動「畫」出來，最後一筆是通電。 */
 export default function PathSection() {
@@ -20,10 +19,11 @@ export default function PathSection() {
       <div className="chapter-head">
         <span className="chapter-no">章 · 壹</span>
         <span className="chapter-sub" style={{ margin: 0 }}>
-          六個階段，一條被工程化的路
+          六個階段，教材狀態公開
         </span>
       </div>
-      <h2 id="path-title">從零到研究員，每一步都有驗收</h2>
+      <h2 id="path-title">先讀已完成的教材，再看路線規劃</h2>
+      <p className="chapter-sub">目前 2 / 38 個模組有教材。其餘為規劃中的學習目標；時數是課程估計，現有正文以繁體中文提供。</p>
       <hr className="rule" />
 
       <div className="path" style={{ "--draw": Math.min(1, progress * 1.6) }}>
@@ -35,10 +35,19 @@ export default function PathSection() {
             <span className="path-dot" aria-hidden="true">{stage.id}</span>
             <span className="path-stage">STAGE {stage.id}</span>
             <h3>
-              {stage.title}
-              <span className="hours">{stage.hours}h</span>
+              {stage.title[manifest.default_locale]}
+              <span className="hours">約 {stage.hours}h</span>
             </h3>
-            <p>{stage.line}</p>
+            <p>{stage.tagline[manifest.default_locale]}</p>
+            <p className="module-status">{stage.ready.length} / {stage.modules.length} 個模組可讀 · {stage.modules.length - stage.ready.length} 個規劃中</p>
+            {stage.ready.map(module => <div className="lesson-entry" key={module.id}>
+              <strong>{module.title[manifest.default_locale]}</strong>
+              <a href={SOURCE + module.content[manifest.default_locale][0]}>模組導讀 ↗</a>
+              {module.content[manifest.default_locale].length > 1 && <details className="lesson-catalogue">
+                <summary>展開 {module.content[manifest.default_locale].length} 份教材</summary>
+                <ol>{module.content[manifest.default_locale].map(path => <li key={path}><a href={SOURCE + path}>{path.split("/").pop().replace(".md", "")} ↗</a></li>)}</ol>
+              </details>}
+            </div>)}
           </div>
         ))}
       </div>

@@ -15,6 +15,8 @@ export default function MachineSection() {
   const sectionRef = useRef(null);
   const railRef = useRef(null);
   const runIdRef = useRef(0);
+  const busyRunRef = useRef(null);
+  const [busy, setBusy] = useState(false);
   const reduced = usePrefersReducedMotion();
   const powered = usePowerOn(sectionRef, 0.35);
 
@@ -36,6 +38,8 @@ export default function MachineSection() {
   const reset = useCallback(
     (nextFault = fault) => {
       runIdRef.current += 1;
+      busyRunRef.current = null;
+      setBusy(false);
       setRunToken((t) => t + 1);
       setCards([]);
       setStation(null);
@@ -91,39 +95,48 @@ export default function MachineSection() {
   );
 
   const stepOnce = useCallback(async () => {
+    if (busyRunRef.current !== null) return;
     const myRun = runIdRef.current;
     const events = sim.step();
-    if (!events) {
-      setDone(true);
-      return;
+    if (!events) { setDone(true); return; }
+    busyRunRef.current = myRun;
+    setBusy(true);
+    try {
+      await perform(events, myRun);
+    } finally {
+      if (busyRunRef.current === myRun) {
+        busyRunRef.current = null;
+        setBusy(false);
+      }
     }
-    await perform(events, myRun);
   }, [sim, perform]);
 
-  // 通電：首次進入視口，機器自己完整跑一遍（長鏡頭：起 → 承 → 轉 → 合）。
-  // 只自動演一次；之後 reset/故障實驗都由訪客手動駕駛。
+  // 首次通電啟動同一個播放控制器；減少動態時由訪客手動開始。
   useEffect(() => {
-    if (!powered || autoPlayedRef.current) return undefined;
+    if (!powered || autoPlayedRef.current) return;
     autoPlayedRef.current = true;
+    if (!reduced) setPlaying(true);
+  }, [powered, reduced]);
+
+  // 暫停在目前這一拍結束後生效。共用鎖避免單步與自動重疊。
+  useEffect(() => {
+    if (!playing || done) return undefined;
     let cancelled = false;
     const myRun = runIdRef.current;
     (async () => {
-      setPlaying(true);
-      while (!cancelled) {
-        const events = sim.step();
-        if (!events || runIdRef.current !== myRun) break;
-        // eslint-disable-next-line no-await-in-loop
-        await perform(events, myRun);
-        // eslint-disable-next-line no-await-in-loop
+      while (!cancelled && runIdRef.current === myRun) {
+        if (busyRunRef.current !== null) {
+          await sleep(40);
+          continue;
+        }
+        await stepOnce();
+        if (sim.isDone()) break;
         await sleep(reduced ? 120 : 900);
       }
       if (!cancelled) setPlaying(false);
     })();
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [powered]);
+    return () => { cancelled = true; };
+  }, [playing, done, stepOnce, sim, reduced]);
 
   const railRefScroll = useCallback(() => {
     const rail = railRef.current;
@@ -141,7 +154,7 @@ export default function MachineSection() {
     } else if (event.key === "r" || event.key === "R") {
       reset();
     } else if (event.key === "f" || event.key === "F") {
-      setFault((v) => !v);
+      reset(!fault);
     }
   };
 
@@ -202,7 +215,7 @@ export default function MachineSection() {
                   setPlaying(false);
                   void stepOnce();
                 }}
-                disabled={done}
+                disabled={done || busy}
               >
                 單步 ▸
               </button>
@@ -217,14 +230,13 @@ export default function MachineSection() {
               <button type="button" className="btn" onClick={() => reset()}>
                 重置 ↺
               </button>
-              <label className="lever" title="下一次重置後，第一拍會輸出壞 JSON，看循環如何自我修復">
+              <label className="lever" title="切換後重新開始；第一拍會輸出壞 JSON，看循環如何自我修復">
                 <input
                   type="checkbox"
                   checked={fault}
                   onChange={(e) => {
                     const next = e.target.checked;
-                    setFault(next);
-                    if (steps > 0) reset(next);
+                    reset(next);
                   }}
                 />
                 故障注入
@@ -284,7 +296,7 @@ export default function MachineSection() {
               </span>
               {done && (
                 <span style={{ color: "var(--red)" }}>
-                  ✓ 任務完成 —— 畢業考官驗收：REPORT.md 內容完整、誘餌排除（G5.3 之味）
+                  ✓ 示範流程已結束 · 請查看上方對話與工具結果
                 </span>
               )}
             </div>
@@ -296,7 +308,7 @@ export default function MachineSection() {
           <span className="h">協議</span>裁定它說的話合不合法；{" "}
           <span className="h">雙手</span>在固定分發表裡查表執行。
           換大腦不用改機器——所以它可以是你手寫的規則，也可以是真模型。
-          試試拉下「故障注入」再重置：第一拍會輸出壞 JSON，
+          「暫停」會在目前這一拍結束後停止。切換「故障注入」會重新開始：第一拍輸出壞 JSON，
           你會看到協議把錯誤喂回大腦，循環自己癒合。
         </p>
       </div>

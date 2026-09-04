@@ -3,8 +3,8 @@
   "default_locale": "zh-TW",
   "locales": ["zh-TW", "en"],
   "description": {
-    "zh-TW": "MiniAcademy：從完全沒有計算機基礎到 AI 研究員的完整教學地圖。",
-    "en": "MiniAcademy: a complete map from zero CS background to AI researcher."
+    "zh-TW": "MiniAcademy：從計算機入門到 agent 工程與研究方法的課程規劃；教材持續編寫中。",
+    "en": "MiniAcademy: a curriculum plan from computing basics to agent engineering and research methods; lessons are in development."
   },
   "goal_levels": {
     "know": "能解釋/能講清楚（理解層）",

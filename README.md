@@ -1,6 +1,10 @@
 # MiniHarness 🔧
 
-**從完全沒有計算機基礎，到 AI 研究員——一條被工程化的完整教學路線。**
+**用 Python 理解並實作 agent harness：離線示範、概念文檔與八步動手營。**
+
+先從 [互動循環機器](https://f0909172434.github.io/miniharness/#machine)、[終端機入門](academy/content/zh-TW/stage-0/terminal-first-steps.md) 或 [八步動手營](tutorial/README.md) 開始。
+
+**內容狀態（2026-09）：** MiniAcademy 規劃了 6 階段、38 個模組、110 個學習目標；目前 2 個模組標為 ready、36 個為 draft。現有 ready 教材為繁體中文，英文正文尚未提供。Python harness 執行時僅使用標準庫；測試與網站另有開發依賴。
 
 > 上層是 **MiniAcademy**：6 階段 / 38 模塊 / 110 條可驗證 Goal 的課程地圖
 > （[academy/](academy/README.md)），配 `tools/academy.py` 提供規劃、
@@ -20,7 +24,9 @@
 
 ## 學院：六階段地圖（academy/）
 
-| 階段 | 主題 | 你將能夠 | 小時 |
+以下為課程規劃與估計時數，完整路線仍在編寫。
+
+| 階段 | 主題 | 規劃目標 | 預估小時 |
 | --- | --- | --- | --- |
 | 0 | 零基礎起步 | 終端機/檔案/第一支程式不慌張 | 9 |
 | 1 | Python 程式核心 | 獨立交付命令行工具 | 36 |
@@ -116,7 +122,7 @@ python3 -m pytest                 # 30 個測試釘住每個模塊的行為
 
 （完整未刪節輸出見 `demos/`，誘餌文件 `notes.txt` 被正確排除。）
 
-## 三個 Demo
+## 四個 Demo
 
 | Demo | 命令 | 說明 |
 | --- | --- | --- |
@@ -133,6 +139,12 @@ export OPENAI_API_KEY=sk-...
 # 可選：export MINIHARNESS_MODEL=deepseek-chat
 python3 demos/demo_cli.py
 ```
+
+## 網站互動驗證
+
+循環機器的自動與單步操作共用播放控制。暫停會在目前一拍結束後停止；重置會取消舊的演出，故障開關則從新的一輪開始。系統設定減少動態時，首次進入畫面不會自動播放。
+
+2026-09 的瀏覽器回歸檢查涵蓋：開始後暫停、等待後步數不變、故障第一拍顯示解析錯誤、自動恢復完成報告，以及390px版面的教材連結與自行記錄。
 
 ## 課程地圖（docs/）
 

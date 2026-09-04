@@ -14,10 +14,12 @@ export default function Hero() {
         <span className="cursor-block" aria-hidden="true" />
       </h1>
       <p className="hero-sub">
-        這是一條從零計算機基礎走到 AI 研究員的路線：6 個階段、110 條可驗證的
-        Goal，以及一台你馬上就能通電的 agent 循環機器。紙上寫的、機器跑的，
-        都是這個倉庫裡真實的東西。
+        先操作一台 agent 循環，再親手寫出自己的 harness。這裡有離線範例、
+        十章概念文檔與八步動手營。延伸課程規劃了 38 個模組，目前 2 個已有教材、
+        36 個仍在編寫。
       </p>
+
+      <div className="start-links"><a href="#machine">操作循環機器 ↓</a><a href="#path">找到可讀教材 ↓</a><a href="https://github.com/f0909172434/miniharness">原始碼 ↗</a></div>
 
       <svg
         className={`hero-loop${reduced ? "" : " draw-on-load"}`}
