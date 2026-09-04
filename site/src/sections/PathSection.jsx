@@ -42,7 +42,11 @@ export default function PathSection() {
             <p className="module-status">{stage.ready.length} / {stage.modules.length} 個模組可讀 · {stage.modules.length - stage.ready.length} 個規劃中</p>
             {stage.ready.map(module => <div className="lesson-entry" key={module.id}>
               <strong>{module.title[manifest.default_locale]}</strong>
-              {module.content[manifest.default_locale].map((path, i) => <a href={SOURCE + path} key={path}>閱讀教材{module.content[manifest.default_locale].length > 1 ? ` ${i + 1}` : ""} ↗</a>)}
+              <a href={SOURCE + module.content[manifest.default_locale][0]}>模組導讀 ↗</a>
+              {module.content[manifest.default_locale].length > 1 && <details className="lesson-catalogue">
+                <summary>展開 {module.content[manifest.default_locale].length} 份教材</summary>
+                <ol>{module.content[manifest.default_locale].map(path => <li key={path}><a href={SOURCE + path}>{path.split("/").pop().replace(".md", "")} ↗</a></li>)}</ol>
+              </details>}
             </div>)}
           </div>
         ))}
