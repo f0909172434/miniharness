@@ -57,12 +57,8 @@ python3 demos/demo_eval.py --quiet     # 評測 3/3
 
 ## 站點部署（site/ → GitHub Pages）
 
-線上地址：https://f0909172434.github.io/miniharness/（由 gh-pages 分支供給）。
-改動 site/ 後重新部署：
+線上地址：https://f0909172434.github.io/miniharness/。
 
-```bash
-cd site && npm run build
-cd dist && git add -A && git commit -m "deploy: site build" && git push -qf origin gh-pages
-```
+推送 main 後，由 GitHub Actions 先執行 Python 測試、課程結構驗證、離線示範與網站建置，全部通過才部署 GitHub Pages。PR 只驗證，不部署。不要手動覆寫 gh-pages 分支。
 
-（site/dist 是一個嵌套的 gh-pages 倉庫，已被主倉庫忽略。）
+本機建置：`npm ci --prefix site && npm run build --prefix site`（Node 22.12+）。

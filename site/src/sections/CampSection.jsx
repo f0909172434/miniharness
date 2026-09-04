@@ -1,14 +1,14 @@
 import { useLocalDoneSet } from "../hooks.js";
 
 const CAMP_STEPS = [
-  ["循環與台詞大腦", "while 循環 + history：agent 的心臟", "docs/01"],
-  ["協議", "讓大腦會說 toolcall，並寫出解析器", "docs/02"],
-  ["工具執行", "工具箱 + 永不拋異常的執行器", "docs/03"],
-  ["路徑守衛與讀寫", "第一道安全閘：不許逃出工作區", "docs/06"],
-  ["自我修復", "把解析錯誤喂回大腦，循環自己癒合", "docs/01"],
-  ["上下文預算", "成對裁剪歷史，保護最新觀察", "docs/04"],
-  ["迷你評測", "同一套任務，誰來考都同分", "docs/07"],
-  ["🎓 畢業考", "規則大腦驅動整機，寫出 TODO 報告", "docs/09"],
+  ["循環與台詞大腦", "while 循環 + history：agent 的心臟", "step-01-loop.md"],
+  ["協議", "讓大腦會說 toolcall，並寫出解析器", "step-02-protocol.md"],
+  ["工具執行", "工具箱 + 永不拋異常的執行器", "step-03-tools.md"],
+  ["路徑守衛與讀寫", "第一道安全閘：不許逃出工作區", "step-04-guard-files.md"],
+  ["自我修復", "把解析錯誤喂回大腦，循環自己癒合", "step-05-repair.md"],
+  ["上下文預算", "成對裁剪歷史，保護最新觀察", "step-06-context.md"],
+  ["迷你評測", "同一套任務，誰來考都同分", "step-07-eval.md"],
+  ["🎓 畢業考", "規則大腦驅動整機，寫出 TODO 報告", "step-08-graduation.md"],
 ];
 
 const STORAGE_KEY = "mh-camp-steps-v1";
@@ -28,9 +28,8 @@ export default function CampSection() {
       </div>
       <h2 id="camp-title">動手營 · 工序單</h2>
       <p className="chapter-sub">
-        這不是章節列表，是一張可以逐項打勾的作業指導書：每道工序在
-        tutorial/steps/ 裡都有規格、提示與常見坑，檢查器逐項驗收。
-        勾滿八格，你就寫出了自己的 my_harness.py。
+        每道工序都連到實際規格、提示與常見問題。勾選是保存在這個瀏覽器的
+        自行記錄；實作是否通過，請在本機執行動手營檢查器。
       </p>
 
       <ol className="camp-list">
@@ -44,22 +43,23 @@ export default function CampSection() {
                 <span className="camp-num">{String(index + 1).padStart(2, "0")}</span>
                 <span className="camp-title">{title}</span>
                 <span className="camp-line">{line}</span>
-                <span className="camp-ref">{ref}</span>
+
               </label>
+              <a className="camp-ref" href={`https://github.com/f0909172434/miniharness/blob/main/tutorial/steps/${ref}`}>工序教材 ↗</a>
             </li>
           );
         })}
       </ol>
 
       <p className="camp-progress" aria-live="polite">
-        工序 {doneCount}/8
+        自行記錄 {doneCount}/8
         {doneCount === 8
-          ? " —— 全部完成。G5.3 的驗收命令在下面，去跑它。"
+          ? " —— 已全部勾選；尚需執行檢查器確認實作。"
           : ` —— 剩 ${8 - doneCount} 道；勾選只存在你的瀏覽器裡。`}
       </p>
 
       <div className="terminal-block" role="figure" aria-label="常用命令">
-        <div><span className="c">$</span> git clone &lt;repo-url&gt; miniharness <span className="c">&&</span> cd miniharness</div>
+        <div><span className="c">$</span> git clone https://github.com/f0909172434/miniharness.git <span className="c">&&</span> cd miniharness</div>
         <div><span className="c">$</span> python3 tutorial/check.py <span className="c"># 動手營：進度總覽 / 逐步驗收</span></div>
         <div><span className="c">$</span> python3 demos/demo_from_zero.py <span className="c"># 沒有模型，也有 agent</span></div>
         <div><span className="c">$</span> python3 tools/academy.py map <span className="c"># 你的學習地圖與進度</span></div>
@@ -67,9 +67,8 @@ export default function CampSection() {
       </div>
 
       <p style={{ color: "var(--ink-soft)", maxWidth: 680 }}>
-        畢業標準寫在明處：G5.3（動手營 8/8）、G5.12（復現一篇論文的核心實驗）、
-        G5.14（一份可復現的技術報告）、G5.15（一個被合併的 PR）。做到這四條，
-        你就是這門課定義下的 AI 研究員。
+        後續練習方向包括：完成動手營檢查、復現一個小型實驗、寫出可重現的技術報告，
+        以及參與一次開源貢獻。這些是練習目標；職涯能力仍需要持續實作與外部回饋。
       </p>
     </section>
   );

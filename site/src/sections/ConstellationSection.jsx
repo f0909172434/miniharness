@@ -80,7 +80,6 @@ export default function ConstellationSection() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, size.w, size.h);
 
-    const { px, py } = project;
     const nodeR = Math.max(3.5, size.w / 260);
 
     // 邊：前置 Goal → 依賴模塊的 Goal
@@ -154,6 +153,7 @@ export default function ConstellationSection() {
     let best = null;
     let bestDist = 18;
     layout.nodes.forEach((node) => {
+      if (activeStage !== null && node.stageId !== activeStage) return;
       const { px, py } = project(node);
       const d = Math.hypot(px - mx, py - my);
       if (d < bestDist) {
@@ -179,9 +179,8 @@ export default function ConstellationSection() {
       </div>
       <h2 id="sky-title">一百一十顆星的星圖</h2>
       <p className="chapter-sub">
-        每顆星是一條可驗證的 Goal，暗線是它們的前置依賴——從終端機那顆星走到
-        「復現論文」，中間沒有任何跳級的捷徑。這張圖直接由本倉庫的
-        academy/manifest.json 畫出。
+        每顆星是一個規劃中的學習目標，連線表示前置依賴。選擇節點查看教材狀態與
+        驗收方式；已有內容的模組提供直接入口。勾選只記錄你的自評，不會執行驗收。
       </p>
 
       <div className="sky-shell" ref={wrapRef}>
@@ -278,6 +277,8 @@ export default function ConstellationSection() {
                   階段 {layout.modules.find((m) => m.goals.includes(selected.id))?.stageId} ·{" "}
                   {selectedModule?.title[manifest.default_locale]}
                 </p>
+                <p className="module-status">{selectedModule?.status === "ready" ? "已有教材 · 繁體中文" : "規劃中 · 正文尚未完成"}</p>
+                {selectedModule?.status === "ready" && selectedModule.content[manifest.default_locale].map(path => <a className="lesson-link" key={path} href={`https://github.com/f0909172434/miniharness/blob/main/${path}`}>閱讀模組教材 ↗</a>)}
                 <p>{selected.statement}</p>
                 {selected.verify && (
                   <p className="verify">$ {selected.verify}</p>
@@ -288,13 +289,13 @@ export default function ConstellationSection() {
                     checked={done.has(selected.id)}
                     onChange={() => toggleDone(selected.id)}
                   />
-                  標記為已達成
+                  自行標記為已練習
                 </label>
               </>
             ) : (
               <p className="empty">
                 （尚未釘選任何一顆星。點擊星圖上的任意節點——比如從
-                G0.1「打開終端機」開始，順著暗線走完六年路的樣子。）
+                G0.1「打開終端機」開始，查看已有教材與後續規劃。）
               </p>
             )}
           </aside>

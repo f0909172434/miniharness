@@ -1,8 +1,17 @@
-name: CI
+name: CI and Pages
 
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: miniharness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -11,15 +20,43 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - name: Install test deps
+          python-version: '3.11'
+      - name: Install test dependencies
         run: pip install pytest
-      - name: Unit tests (core + academy structure)
+      - name: Unit tests
         run: python -m pytest -q
       - name: Academy manifest validation
-        run: python3 tools/academy.py validate
+        run: python tools/academy.py validate
       - name: Offline smoke demos
         run: |
-          python3 demos/demo_mock.py > /dev/null
-          python3 demos/demo_from_zero.py > /dev/null
-          NO_COLOR=1 python3 demos/demo_eval.py --quiet
+          python demos/demo_mock.py > /dev/null
+          python demos/demo_from_zero.py > /dev/null
+          NO_COLOR=1 python demos/demo_eval.py --quiet
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --prefix site
+      - run: npm run build --prefix site
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: site/dist
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [test, frontend]
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

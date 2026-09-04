@@ -19,12 +19,12 @@ export default function App() {
       </main>
       <section className="finale wrap" aria-label="尾聲">
         <p>紙還在寫，機器還在轉。</p>
-        <p className="small">MINIACADEMY · 6 STAGES · 110 GOALS · 0 DEPENDENCIES</p>
+        <p className="small">MINIACADEMY · 2 READY / 38 MODULES · PYTHON RUNTIME: STDLIB</p>
       </section>
       <div className="wrap">
         <footer>
           <span>MiniHarness · MIT License</span>
-          <span>sim: 教程算法真實移植 · sky: academy/manifest.json</span>
+          <span>互動示範依教程設計 · 學習狀態由本人記錄</span>
           <span>手稿成機 · 2026</span>
         </footer>
       </div>
