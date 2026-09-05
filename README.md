@@ -4,7 +4,7 @@
 
 先從 [互動循環機器](https://f0909172434.github.io/miniharness/#machine)、[終端機入門](academy/content/zh-TW/stage-0/terminal-first-steps.md) 或 [八步動手營](tutorial/README.md) 開始。
 
-**內容狀態（2026-09）：** MiniAcademy 規劃了 6 階段、38 個模組、110 個學習目標；目前 2 個模組標為 ready、36 個為 draft。現有 ready 教材為繁體中文，英文正文尚未提供。Python harness 執行時僅使用標準庫；測試與網站另有開發依賴。
+**內容狀態（2026-09）：** MiniAcademy 規劃了 6 階段、38 個模組、110 個學習目標；38 個模組皆有繁體中文正文、練習與驗收指引；`ready` 指教材可讀，不代表學習者通過或已經外部教學驗證。現有 ready 教材為繁體中文，英文正文尚未提供。Python harness 執行時僅使用標準庫；測試與網站另有開發依賴。
 
 > 上層是 **MiniAcademy**：6 階段 / 38 模塊 / 110 條可驗證 Goal 的課程地圖
 > （[academy/](academy/README.md)），配 `tools/academy.py` 提供規劃、
@@ -22,9 +22,11 @@
 
 ---
 
+新入口：[38 課教材索引](academy/README.md) · [自測與驗收工具](academy/TOOLS.md) · [作業契約](academy/submissions/README.md) · [專案交付清單](academy/ASSESSMENT.md) · [導師手冊](academy/MENTOR.md)。新增可執行的 ML 流水線與迷你 Transformer 教學參考；其套件與 CPU 執行環境獨立於 harness。
+
 ## 學院：六階段地圖（academy/）
 
-以下為課程規劃與估計時數，完整路線仍在編寫。
+以下為教材路線與練習估計時數，包含專案與反覆練習。
 
 | 階段 | 主題 | 規劃目標 | 預估小時 |
 | --- | --- | --- | --- |
@@ -78,7 +80,7 @@ python3 tutorial/check.py          # 建議先看看你現在的進度（0/8）
 # 路線 B：先跑現成的，再回頭拆
 python3 demos/demo_mock.py        # 離線 demo：MockLLM 扮演大腦，完整跑一遍 harness
 python3 demos/demo_from_zero.py   # 從 0 造腦：自訓語言模型 0%、手寫規則 100%、模仿學習 100%
-python3 -m pytest                 # 30 個測試釘住每個模塊的行為
+python3 -m pytest                 # 核心、課程與失敗路徑檢查
 ```
 
 想被帶著一步一步做？直接進 [tutorial/](tutorial/README.md)：
@@ -188,7 +190,7 @@ miniharness/
 │   └── tasks.py          #   3 個內置評測任務 + 離線 mock 劇本
 ├── demos/                # mock（離線）/ from_zero（造腦）/ cli（真模型）/ eval（評測）
 ├── docs/                 # 10 章概念文檔（第 5 階段 harness 模組的教材）
-├── tests/                # 40 個測試（核心 30 + 課程結構 10）
+├── tests/                # 核心、課程與驗收工具測試
 ├── ROADMAP.md            # 專案層規劃：內容/多語言/工具/社群四條線
 └── pyproject.toml
 ```

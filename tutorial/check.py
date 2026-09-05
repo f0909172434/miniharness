@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 
+import argparse
 import importlib.util
 import re
 import sys
@@ -470,15 +471,22 @@ def run_step(number: int, L, verbose: bool = True):
     return passed, len(checks)
 
 
-def main() -> None:
+def main() -> int:
+    global TARGET
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("step", nargs="?", type=int, choices=range(1, 9))
+    parser.add_argument("--submission", type=Path, default=TARGET,
+                        help="要驗收的作業檔；不會改寫此檔")
+    args = parser.parse_args()
+    TARGET = args.submission.resolve()
     L = load_learner()
-    if len(sys.argv) > 1 and sys.argv[1].isdigit():
-        number = int(sys.argv[1])
+    if args.step is not None:
+        number = args.step
         if not any(n == number for n, _, _ in STEPS):
             print(f"没有第 {number} 步。有效步骤：{', '.join(str(n) for n, _, _ in STEPS)}")
             sys.exit(1)
-        run_step(number, L)
-        return
+        passed, total = run_step(number, L)
+        return 0 if passed == total else 1
 
     print("== MiniHarness 动手营 · 进度总览 ==\n")
     first_fail = None
@@ -499,6 +507,8 @@ def main() -> None:
         print(f"当前卡在：第 {first_fail} 步。打开 tutorial/steps/ 对应文档修改，然后：")
         print(f"    python3 tutorial/check.py {first_fail}")
 
+    return 0 if first_fail is None else 1
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

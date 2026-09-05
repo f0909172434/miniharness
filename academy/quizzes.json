@@ -1,0 +1,357 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "goal": "G0.4",
+      "question": "在 /lab/data 中，../note.txt 指到哪裡？",
+      "choices": [
+        "/lab/note.txt",
+        "/lab/data/note.txt",
+        "/note.txt"
+      ],
+      "answer": 0,
+      "explanation": ".. 先回到父目錄，再附加 note.txt；絕對路徑不依目前位置。"
+    },
+    {
+      "goal": "G0.8",
+      "question": "print(\"A\"); input(\"B\"); print(\"C\") 何時出現 C？",
+      "choices": [
+        "一定不會出現",
+        "使用者完成輸入後",
+        "A 之前"
+      ],
+      "answer": 1,
+      "explanation": "input 會等待，之後才繼續下一行。"
+    },
+    {
+      "goal": "G0.10",
+      "question": "遇到 IndexError，第一步最有用的是？",
+      "choices": [
+        "刪除整段程式",
+        "立即重新安裝 Python",
+        "保留錯誤與輸入，查看索引和長度"
+      ],
+      "answer": 2,
+      "explanation": "錯誤提供可驗證的線索；先縮小資料和操作。"
+    },
+    {
+      "goal": "G1.4",
+      "question": "a=[1]; b=a; b.append(2) 後 a 是？",
+      "choices": [
+        "[1, 2]",
+        "[1]",
+        "[2]"
+      ],
+      "answer": 0,
+      "explanation": "a 和 b 指向同一個可變 list，修改會被兩個名字看到。"
+    },
+    {
+      "goal": "G1.7",
+      "question": "只需要快速判斷一個值是否已出現，通常選？",
+      "choices": [
+        "不含索引的長字串",
+        "set",
+        "保存重複值的 list"
+      ],
+      "answer": 1,
+      "explanation": "set 表達唯一成員；需要計數時改用 dict。"
+    },
+    {
+      "goal": "G1.11",
+      "question": "全域 x=1，函式內 x=2 且未宣告 global，函式後全域 x 是？",
+      "choices": [
+        "2",
+        "None",
+        "1"
+      ],
+      "answer": 2,
+      "explanation": "函式內的賦值綁定區域名字，不改全域。"
+    },
+    {
+      "goal": "G1.12",
+      "question": "程式正常結束但平均值分母多加 1，屬於？",
+      "choices": [
+        "邏輯錯誤",
+        "語法錯誤",
+        "一定是作業系統錯誤"
+      ],
+      "answer": 0,
+      "explanation": "正確執行語法不保證實現預期計算。"
+    },
+    {
+      "goal": "G1.15",
+      "question": "traceback 應如何閱讀？",
+      "choices": [
+        "直接忽略所有檔名",
+        "看最後的異常，再沿呼叫鏈找自己的出錯行",
+        "只看第一行"
+      ],
+      "answer": 1,
+      "explanation": "呼叫鏈說明如何到達錯誤，不只有最後一個函式。"
+    },
+    {
+      "goal": "G2.1",
+      "question": "HTTPS 請求的簡化順序是？",
+      "choices": [
+        "HTTP→DNS→TLS",
+        "先取得 body 才能找主機",
+        "DNS→TCP/TLS→HTTP"
+      ],
+      "answer": 2,
+      "explanation": "這是常見 TCP 型 HTTPS 流程；快取與 HTTP/3 等情況可有差異。"
+    },
+    {
+      "goal": "G2.3",
+      "question": "HTTP 429 通常代表什麼？",
+      "choices": [
+        "請求過多，應遵守伺服器等待指示",
+        "JSON 一定錯誤",
+        "資源永久不存在"
+      ],
+      "answer": 0,
+      "explanation": "狀態碼描述 HTTP 結果，body 解析是另一層。"
+    },
+    {
+      "goal": "G2.8",
+      "question": "真正啟動 CLI 並讀寫暫存檔的測試更接近？",
+      "choices": [
+        "完全不算測試",
+        "整合測試",
+        "只測一個純函式的單元測試"
+      ],
+      "answer": 1,
+      "explanation": "它檢查多個元件串接；仍需單元測試協助快速定位。"
+    },
+    {
+      "goal": "G2.12",
+      "question": "O(n²) 中 n 加倍，主要操作數大致？",
+      "choices": [
+        "不變",
+        "一定變两秒",
+        "變四倍"
+      ],
+      "answer": 2,
+      "explanation": "大 O 描述成長階，不給固定的實際秒數。"
+    },
+    {
+      "goal": "G2.16",
+      "question": "主鍵與索引的區別是？",
+      "choices": [
+        "主鍵約束識別與唯一性；索引協助查找",
+        "索引一定保證唯一",
+        "主鍵只是畫面排序"
+      ],
+      "answer": 0,
+      "explanation": "有些索引可設唯一，但一般索引不等於主鍵約束。"
+    },
+    {
+      "goal": "G3.1",
+      "question": "一批 10 筆、每筆 3 特徵的資料可表示成？",
+      "choices": [
+        "必須是 10 個不同模型",
+        "形狀 (10,3) 的矩陣",
+        "只能是一個數字"
+      ],
+      "answer": 1,
+      "explanation": "矩陣的軸可對應樣本與特徵；需明確記錄軸意義。"
+    },
+    {
+      "goal": "G3.3",
+      "question": "兩個向量平行但長度增加，未正規化的內積？",
+      "choices": [
+        "只依方向且必為 1",
+        "永遠不變",
+        "也會受到長度影響"
+      ],
+      "answer": 2,
+      "explanation": "cosine 除以兩者長度；零向量另需處理。"
+    },
+    {
+      "goal": "G3.4",
+      "question": "神經網路中的 X@W+b 表示？",
+      "choices": [
+        "線性映射加偏置",
+        "隨機洗牌",
+        "一律是卷積"
+      ],
+      "answer": 0,
+      "explanation": "矩陣乘法混合輸入特徵；非線性需另加 activation。"
+    },
+    {
+      "goal": "G3.5",
+      "question": "f(x)=x² 在 x=3 的導數是多少？",
+      "choices": [
+        "3",
+        "6",
+        "9"
+      ],
+      "answer": 1,
+      "explanation": "導數 2x 是局部斜率，f(3)=9 是函式值。"
+    },
+    {
+      "goal": "G3.6",
+      "question": "L=(3w−1)² 的 dL/dw 是？",
+      "choices": [
+        "2(3w−1)",
+        "3w²",
+        "6(3w−1)"
+      ],
+      "answer": 2,
+      "explanation": "外層平方導數乘上內層 3。"
+    },
+    {
+      "goal": "G3.7",
+      "question": "基本梯度下降更新是？",
+      "choices": [
+        "w←w−η∇L",
+        "w←w+η∇L",
+        "不依梯度任意移動"
+      ],
+      "answer": 0,
+      "explanation": "負梯度給局部下降方向，但過大步長仍可增加損失。"
+    },
+    {
+      "goal": "G3.8",
+      "question": "P(A|B) 的分母是？",
+      "choices": [
+        "P(A)+P(B)",
+        "P(B)",
+        "P(A)"
+      ],
+      "answer": 1,
+      "explanation": "条件機率把樣本空間限制到 B；P(B) 必須非零。"
+    },
+    {
+      "goal": "G3.9",
+      "question": "Bernoulli(p) 的期望是？",
+      "choices": [
+        "1/p",
+        "一定是 0.5",
+        "p"
+      ],
+      "answer": 2,
+      "explanation": "Bernoulli 取值 0/1，1 的機率為 p。"
+    },
+    {
+      "goal": "G3.10",
+      "question": "p 值表示？",
+      "choices": [
+        "虛無假設下同樣或更極端資料的機率",
+        "虛無假設為真的機率",
+        "實驗成功的機率"
+      ],
+      "answer": 0,
+      "explanation": "不能把 P(data|H0) 反過來當 P(H0|data)。"
+    },
+    {
+      "goal": "G3.14",
+      "question": "用已標註的垃圾郵件訓練分類器是？",
+      "choices": [
+        "只靠環境獎勵的強化學習",
+        "監督學習",
+        "沒有標籤的分群"
+      ],
+      "answer": 1,
+      "explanation": "學習目標來自已提供的標籤。"
+    },
+    {
+      "goal": "G3.18",
+      "question": "先對全部資料 fit 標準化再交叉驗證，問題是？",
+      "choices": [
+        "永遠不會影響结果",
+        "保證模型泛化更好",
+        "驗證資料資訊進入前處理，造成洩漏"
+      ],
+      "answer": 2,
+      "explanation": "前處理應放在每個 training fold 內擬合。"
+    },
+    {
+      "goal": "G4.2",
+      "question": "autograd 的 backward 對應什麼？",
+      "choices": [
+        "沿計算圖套用鏈式法則",
+        "隨機試參數",
+        "把 loss 直接複製到所有梯度"
+      ],
+      "answer": 0,
+      "explanation": "圖上的局部導數相乘並沿多條路徑相加。"
+    },
+    {
+      "goal": "G4.7",
+      "question": "CNN 的主要歸納偏好之一是？",
+      "choices": [
+        "沒有任何共享參數",
+        "局部模式與共享卷積核",
+        "所有位置必須逐個串行生成"
+      ],
+      "answer": 1,
+      "explanation": "局部與平移結構有利於影像，但不是所有任務都適合。"
+    },
+    {
+      "goal": "G4.8",
+      "question": "Transformer 能平行訓練是否代表自回歸生成可一次完成？",
+      "choices": [
+        "是，必定一次生成",
+        "只要加位置編碼就保證",
+        "否，生成下一 token 仍依賴前文"
+      ],
+      "answer": 2,
+      "explanation": "訓練可用已知序列和因果遮罩，推論仍要逐步產生。"
+    },
+    {
+      "goal": "G4.11",
+      "question": "Residual 的作用之一是？",
+      "choices": [
+        "提供訊息與梯度的直接路徑",
+        "自動消除所有過擬合",
+        "取代全部注意力計算"
+      ],
+      "answer": 0,
+      "explanation": "LayerNorm 處理尺度，residual 提供跳接；兩者功能不同。"
+    },
+    {
+      "goal": "G4.13",
+      "question": "去重應注意什麼？",
+      "choices": [
+        "只要換檔名就不算重複",
+        "避免同一文件副本跨訓練與測試集合",
+        "重複越多就必然越好"
+      ],
+      "answer": 1,
+      "explanation": "檔名不同也可能內容相同；近似重複還需要其他檢查。"
+    },
+    {
+      "goal": "G4.17",
+      "question": "不同 tokenizer 的 perplexity 可以直接排名嗎？",
+      "choices": [
+        "一定可以，越小越聰明",
+        "只看模型參數數量即可",
+        "通常不行，token 單位與資料需一致"
+      ],
+      "answer": 2,
+      "explanation": "困惑度是每 token 的度量，並非下游任務正確率。"
+    },
+    {
+      "goal": "G5.8",
+      "question": "向量相似度高能否保證文件支持主張？",
+      "choices": [
+        "不能，可能只是主題相近或否定該主張",
+        "能，無需查看原文",
+        "能，只要向量夠長"
+      ],
+      "answer": 0,
+      "explanation": "檢索是找到候選，支持關係仍要對照原文與範圍。"
+    },
+    {
+      "goal": "G5.17",
+      "question": "一張可用的前沿研究地圖應包含？",
+      "choices": [
+        "把所有宣傳文案當既定事實",
+        "有日期的來源、證據範圍與開放問題",
+        "只有熱門模型名稱"
+      ],
+      "answer": 1,
+      "explanation": "日期與來源讓主張可回查，開放問題需有可研究的邊界。"
+    }
+  ]
+}

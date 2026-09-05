@@ -28,6 +28,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 MANIFEST_PATH = ROOT / "academy" / "manifest.json"
 PROGRESS_PATH = ROOT / "academy" / "progress.json"
 STATUSES = ("ready", "draft", "planned")
@@ -51,7 +52,20 @@ def load_progress(path: Path = PROGRESS_PATH) -> dict:
 
 
 def save_progress(progress: dict, path: Path = PROGRESS_PATH) -> None:
-    path.write_text(json.dumps(progress, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    import os
+    import tempfile
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                     prefix=".progress-", delete=False) as handle:
+        temporary = Path(handle.name)
+        try:
+            handle.write(json.dumps(progress, ensure_ascii=False, indent=2) + "\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+            handle.close()
+            temporary.replace(path)
+        finally:
+            temporary.unlink(missing_ok=True)
 
 
 # ----------------------------------------------------------- 索引与图
@@ -437,6 +451,113 @@ def cmd_validate(manifest: dict, args) -> int:
     return 0
 
 
+# ----------------------------------------------------------- 測驗、驗收與可攜進度
+
+def quiz_questions(manifest, stage=None):
+    rows = json.loads((ROOT / 'academy/quizzes.json').read_text(encoding='utf-8'))['questions']
+    allowed = {g['id'] for g in manifest['goals'] if g['level'] == 'know'}
+    return [q for q in rows if q['goal'] in allowed and
+            (stage is None or q['goal'].startswith(f'G{stage}.'))]
+
+
+def cmd_quiz(manifest, args):
+    questions = quiz_questions(manifest, args.stage)
+    if not questions:
+        raise ValueError('此範圍沒有測驗題目')
+    answers = None
+    if args.answers:
+        answers = json.loads(Path(args.answers).read_text(encoding='utf-8'))
+        if not isinstance(answers, dict) or set(answers) - {q['goal'] for q in questions}:
+            raise ValueError('答案應為本次題目的 Goal → 1/2/3 JSON 物件')
+        if any(type(v) is not int or not 1 <= v <= 3 for v in answers.values()):
+            raise ValueError('答案只能是整數 1、2 或 3')
+    correct = 0
+    for q in questions:
+        print(f"\n{q['goal']} {q['question']}")
+        for index, choice in enumerate(q['choices'], 1):
+            print(f'  {index}. {choice}')
+        if args.list:
+            continue
+        if answers is not None:
+            answer = answers.get(q['goal'])
+        else:
+            try:
+                raw = input('答案 1–3（Enter 略過）：').strip()
+                answer = int(raw) if raw else None
+            except (EOFError, ValueError):
+                answer = None
+        passed = answer == q['answer'] + 1
+        correct += passed
+        print(('✓' if passed else '△') + ' ' + q['explanation'])
+    if args.list:
+        return 0
+    print(f'\n自測 {correct}/{len(questions)}。未更改學習進度；請另以自己的例子解釋。')
+    return 0 if correct == len(questions) else 1
+
+
+def cmd_verify(manifest, args):
+    import subprocess
+    from tools.academy_checks import CHECKERS
+    requested = args.goal or [g['id'] for g in manifest['goals'] if g['evidence'] == 'checker']
+    if not requested or any(gid not in CHECKERS for gid in requested):
+        raise ValueError('沒有對應的固定檢查器：' + ', '.join(requested))
+    failed = []
+    print('參考實作自檢；不代表學習者完成。' if args.reference else '驗收學習者作業；不會自動修改進度。', flush=True)
+    for gid in requested:
+        command = [sys.executable, str(ROOT/'tools/academy_checks.py'), gid]
+        if args.reference:
+            command.append('--reference')
+        try:
+            result = subprocess.run(command, cwd=ROOT, timeout=120, check=False)
+            if result.returncode:
+                failed.append(gid)
+        except subprocess.TimeoutExpired:
+            print(f'{gid}: 超過驗收時間')
+            failed.append(gid)
+    print(f'驗收 {len(requested)-len(failed)}/{len(requested)}；未通過：{", ".join(failed) or "無"}')
+    return 1 if failed else 0
+
+
+def progress_snapshot(manifest, data):
+    if not isinstance(data, dict) or not isinstance(data.get('done'), list):
+        raise ValueError('進度必須含 done 陣列')
+    done = data['done']
+    if any(not isinstance(gid, str) or gid not in goal_index(manifest) for gid in done):
+        raise ValueError('進度含未知 Goal 或錯誤型別')
+    if len(done) != len(set(done)):
+        raise ValueError('進度含重複 Goal')
+    return {'format': 'miniacademy-progress/v1', 'manifest_version': manifest['version'], 'done': sorted(done)}
+
+
+def cmd_export(manifest, args):
+    target = Path(args.file)
+    if target.resolve() == args.progress.resolve():
+        raise ValueError('匯出檔不可覆寫目前進度')
+    if target.exists():
+        raise ValueError('匯出檔已存在，請使用新的檔名')
+    snapshot = progress_snapshot(manifest, load_progress(args.progress))
+    save_progress(snapshot, target)
+    print(f'已匯出 {len(snapshot["done"])} 個自評標記至 {target}')
+    return 0
+
+
+def cmd_import(manifest, args):
+    path = Path(args.file)
+    if path.stat().st_size > 262144:
+        raise ValueError('匯入檔超過 256 KiB')
+    data = json.loads(path.read_text(encoding='utf-8'))
+    if not isinstance(data, dict) or set(data) != {'format','manifest_version','done'}:
+        raise ValueError('匯入格式不符 miniacademy-progress/v1')
+    if data['format'] != 'miniacademy-progress/v1' or data['manifest_version'] != manifest['version']:
+        raise ValueError('進度格式或課程版本不同，請先核對目標')
+    incoming = progress_snapshot(manifest, data)
+    current = progress_snapshot(manifest, load_progress(args.progress))
+    merged = {'done': sorted(set(current['done']) | set(incoming['done']))}
+    save_progress(merged, args.progress)
+    print(f'已合併為 {len(merged["done"])} 個自評標記；保留既有進度。')
+    return 0
+
+
 # ----------------------------------------------------------- CLI
 
 def main(argv=None) -> int:
@@ -472,15 +593,32 @@ def main(argv=None) -> int:
     undo_parser = _register("undo", "撤销记录")
     undo_parser.add_argument("goals", nargs="+")
 
+    quiz = _register("quiz", "32 個概念目標自測")
+    quiz.add_argument("--stage", type=int, choices=range(6))
+    quiz.add_argument("--answers", help="Goal 到選項 1/2/3 的 JSON 檔")
+    quiz.add_argument("--list", action="store_true", help="只列出題目")
+    verify = _register("verify", "聚合固定的作業檢查器")
+    verify.add_argument("--goal", action="append")
+    verify.add_argument("--reference", action="store_true", help="驗證參考實作，與學習者作業分開")
+    export = _register("export", "匯出自評進度 JSON")
+    export.add_argument("file")
+    importer = _register("import", "驗證並合併自評進度 JSON")
+    importer.add_argument("file")
+
     args = parser.parse_args(argv)
     manifest = load_manifest(Path(args.manifest))
     args.progress = Path(args.progress)
     handlers = {
         "map": cmd_map, "show": cmd_show, "validate": cmd_validate,
         "i18n": cmd_i18n, "gaps": cmd_gaps, "init": cmd_init,
+        "quiz": cmd_quiz, "verify": cmd_verify, "export": cmd_export, "import": cmd_import,
         "goals": cmd_goals, "next": cmd_next, "done": cmd_done, "undo": cmd_undo,
     }
-    return handlers[args.command](manifest, args)
+    try:
+        return handlers[args.command](manifest, args)
+    except (OSError, ValueError, TypeError) as exc:
+        print(f"錯誤：{exc}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":

@@ -27,6 +27,8 @@ jobs:
         run: python -m pytest -q
       - name: Academy manifest validation
         run: python tools/academy.py validate
+      - name: Reference assignment contracts
+        run: python tools/academy.py verify --reference
       - name: Offline smoke demos
         run: |
           python demos/demo_mock.py > /dev/null

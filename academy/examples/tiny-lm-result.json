@@ -1,0 +1,54 @@
+{
+  "seed": 42,
+  "device": "cpu",
+  "torch": "2.14.0",
+  "steps": 240,
+  "adapt_steps": 80,
+  "vocab": 20,
+  "data_sha256": "7ce0df12c155b6333fe59ac1e5f9b5eba9de0974593b9948513f4f9185fdbcdc",
+  "parameters": 14676,
+  "initial": {
+    "tokens": 118,
+    "nll": 3.0133873830407354,
+    "perplexity": 20.356237643725983
+  },
+  "before_adaptation": {
+    "train": {
+      "tokens": 118,
+      "nll": 0.08543651742008278,
+      "perplexity": 1.089192414404783
+    },
+    "held_out": {
+      "tokens": 31,
+      "nll": 0.7613803705861492,
+      "perplexity": 2.141229872194621
+    },
+    "sample": "read the test.\n",
+    "adaptation_task": {
+      "correct": 0,
+      "total": 2,
+      "outputs": [
+        "write a coode.\n",
+        "write a nest.\n"
+      ],
+      "scope": "Two development prompts, not an independent benchmark"
+    }
+  },
+  "after_adaptation": {
+    "held_out": {
+      "tokens": 31,
+      "nll": 2.801677726930188,
+      "perplexity": 16.472259554720733
+    },
+    "adaptation_task": {
+      "correct": 1,
+      "total": 2,
+      "outputs": [
+        "write a proof.\n",
+        "write a note.\n"
+      ],
+      "scope": "Two development prompts, not an independent benchmark"
+    }
+  },
+  "limits": "Tiny self-authored phrases; held-out vocabulary known; no general language ability claim."
+}

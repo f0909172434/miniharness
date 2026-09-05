@@ -1,3 +1,5 @@
+import manifest from "../../academy/manifest.json";
+const modules = manifest.stages.flatMap(stage => stage.modules);
 import Hero from "./sections/Hero.jsx";
 import PathSection from "./sections/PathSection.jsx";
 import MachineSection from "./sections/MachineSection.jsx";
@@ -19,7 +21,7 @@ export default function App() {
       </main>
       <section className="finale wrap" aria-label="尾聲">
         <p>紙還在寫，機器還在轉。</p>
-        <p className="small">MINIACADEMY · 2 READY / 38 MODULES · PYTHON RUNTIME: STDLIB</p>
+        <p className="small">MINIACADEMY · {modules.filter(module => module.status === "ready").length} READY / {modules.length} MODULES · PYTHON RUNTIME: STDLIB</p>
       </section>
       <div className="wrap">
         <footer>

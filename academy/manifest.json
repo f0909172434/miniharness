@@ -3,8 +3,8 @@
   "default_locale": "zh-TW",
   "locales": ["zh-TW", "en"],
   "description": {
-    "zh-TW": "MiniAcademy：從計算機入門到 agent 工程與研究方法的課程規劃；教材持續編寫中。",
-    "en": "MiniAcademy: a curriculum plan from computing basics to agent engineering and research methods; lessons are in development."
+    "zh-TW": "MiniAcademy：38 個繁體中文模組，從電腦入門到 agent 工程與研究方法；含練習、驗收規格與參考範例。",
+    "en": "MiniAcademy: 38 Traditional Chinese modules from computing basics to agent engineering and research methods, with exercises, assessment rubrics and runnable examples. English lesson translation is pending."
   },
   "goal_levels": {
     "know": "能解釋/能講清楚（理解層）",
@@ -37,19 +37,19 @@
           "id": "s0-python",
           "title": {"zh-TW": "第一支程式", "en": "Your First Program"},
           "hours": 4,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G0.2"],
           "goals": ["G0.5", "G0.6", "G0.7", "G0.8", "G0.9"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-0/python.md"], "en": []}
         },
         {
           "id": "s0-howto",
           "title": {"zh-TW": "如何學會學習", "en": "Learning How to Learn"},
           "hours": 2,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": [],
           "goals": ["G0.10", "G0.11", "G0.12"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-0/howto.md"], "en": []}
         }
       ]
     },
@@ -63,64 +63,64 @@
           "id": "s1-core",
           "title": {"zh-TW": "變數、型別與控制流", "en": "Variables, Types, Control Flow"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G0.6"],
           "goals": ["G1.1", "G1.2", "G1.3", "G1.4"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/core.md"], "en": []}
         },
         {
           "id": "s1-data",
           "title": {"zh-TW": "資料結構", "en": "Data Structures"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.2", "G1.3"],
           "goals": ["G1.5", "G1.6", "G1.7"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/data.md"], "en": []}
         },
         {
           "id": "s1-func",
           "title": {"zh-TW": "函式與模組", "en": "Functions and Modules"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.6"],
           "goals": ["G1.8", "G1.9", "G1.10", "G1.11"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/func.md"], "en": []}
         },
         {
           "id": "s1-debug",
           "title": {"zh-TW": "錯誤、異常與除錯", "en": "Errors, Exceptions, Debugging"},
           "hours": 5,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.8"],
           "goals": ["G1.12", "G1.13", "G1.14", "G1.15"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/debug.md"], "en": []}
         },
         {
           "id": "s1-files",
           "title": {"zh-TW": "文字檔案處理", "en": "Text and File Processing"},
           "hours": 5,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.13"],
           "goals": ["G1.16", "G1.17"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/files.md"], "en": []}
         },
         {
           "id": "s1-git",
           "title": {"zh-TW": "Git 生存", "en": "Git Survival"},
           "hours": 4,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.10"],
           "goals": ["G1.18", "G1.19"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/git.md"], "en": []}
         },
         {
           "id": "s1-project",
           "title": {"zh-TW": "專案：命令行小工具", "en": "Project: A CLI Tool"},
           "hours": 4,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.17", "G1.18"],
           "goals": ["G1.20", "G1.21"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-1/project.md"], "en": []}
         }
       ]
     },
@@ -134,73 +134,73 @@
           "id": "s2-internet",
           "title": {"zh-TW": "網際網路如何工作", "en": "How the Internet Works"},
           "hours": 5,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.20"],
           "goals": ["G2.1", "G2.2", "G2.3"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/internet.md"], "en": []}
         },
         {
           "id": "s2-data",
           "title": {"zh-TW": "資料格式", "en": "Data Formats"},
           "hours": 4,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.16"],
           "goals": ["G2.4", "G2.5"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/data.md"], "en": []}
         },
         {
           "id": "s2-testing",
           "title": {"zh-TW": "測試與除錯方法論", "en": "Testing and Debugging Methodology"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.21"],
           "goals": ["G2.6", "G2.7", "G2.8"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/testing.md"], "en": []}
         },
         {
           "id": "s2-eng",
           "title": {"zh-TW": "專案工程化", "en": "Project Engineering"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.20"],
           "goals": ["G2.9", "G2.10", "G2.11"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/eng.md"], "en": []}
         },
         {
           "id": "s2-algo",
           "title": {"zh-TW": "演算法與複雜度入門", "en": "Algorithms and Complexity"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.6"],
           "goals": ["G2.12", "G2.13", "G2.14"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/algo.md"], "en": []}
         },
         {
           "id": "s2-db",
           "title": {"zh-TW": "SQL 入門", "en": "SQL Basics"},
           "hours": 4,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G1.17"],
           "goals": ["G2.15", "G2.16"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/db.md"], "en": []}
         },
         {
           "id": "s2-collab",
           "title": {"zh-TW": "協作與自動化", "en": "Collaboration and Automation"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G2.7", "G2.9"],
           "goals": ["G2.17", "G2.18", "G2.19"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/collab.md"], "en": []}
         },
         {
           "id": "s2-project",
           "title": {"zh-TW": "專案：資料看板", "en": "Project: A Data Dashboard"},
           "hours": 3,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G2.11", "G2.18", "G2.19"],
           "goals": ["G2.20"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-2/project.md"], "en": []}
         }
       ]
     },
@@ -214,55 +214,55 @@
           "id": "s3-linalg",
           "title": {"zh-TW": "線性代數", "en": "Linear Algebra"},
           "hours": 10,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G2.20"],
           "goals": ["G3.1", "G3.2", "G3.3", "G3.4"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-3/linalg.md"], "en": []}
         },
         {
           "id": "s3-calc",
           "title": {"zh-TW": "微積分要素", "en": "Calculus Essentials"},
           "hours": 8,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G3.2"],
           "goals": ["G3.5", "G3.6", "G3.7"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-3/calc.md"], "en": []}
         },
         {
           "id": "s3-prob",
           "title": {"zh-TW": "機率與統計", "en": "Probability and Statistics"},
           "hours": 10,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": [],
           "goals": ["G3.8", "G3.9", "G3.10"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-3/prob.md"], "en": []}
         },
         {
           "id": "s3-numpy",
           "title": {"zh-TW": "資料科學工具鏈", "en": "Data Science Toolchain"},
           "hours": 8,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G3.2", "G1.17"],
           "goals": ["G3.11", "G3.12", "G3.13"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-3/numpy.md"], "en": []}
         },
         {
           "id": "s3-ml",
           "title": {"zh-TW": "機器學習核心概念", "en": "Machine Learning Core Concepts"},
           "hours": 12,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G3.7", "G3.10", "G3.11"],
           "goals": ["G3.14", "G3.15", "G3.16", "G3.17", "G3.18"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-3/ml.md"], "en": []}
         },
         {
           "id": "s3-project",
           "title": {"zh-TW": "專案：完整 ML 流水線", "en": "Project: An End-to-End ML Pipeline"},
           "hours": 12,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G3.12", "G3.17"],
           "goals": ["G3.19", "G3.20"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-3/project.md"], "en": []}
         }
       ]
     },
@@ -276,64 +276,64 @@
           "id": "s4-torch",
           "title": {"zh-TW": "PyTorch 與自動微分", "en": "PyTorch and Autograd"},
           "hours": 10,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G3.19"],
           "goals": ["G4.1", "G4.2", "G4.3"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/torch.md"], "en": []}
         },
         {
           "id": "s4-training",
           "title": {"zh-TW": "訓練全流程", "en": "The Training Loop"},
           "hours": 12,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G4.3"],
           "goals": ["G4.4", "G4.5", "G4.6"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/training.md"], "en": []}
         },
         {
           "id": "s4-arch",
           "title": {"zh-TW": "架構巡禮", "en": "An Architecture Tour"},
           "hours": 8,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G4.4"],
           "goals": ["G4.7", "G4.8"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/arch.md"], "en": []}
         },
         {
           "id": "s4-transformer",
           "title": {"zh-TW": "Transformer 精讀", "en": "Transformer Deep Dive"},
           "hours": 16,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G4.7"],
           "goals": ["G4.9", "G4.10", "G4.11"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/transformer.md"], "en": []}
         },
         {
           "id": "s4-token",
           "title": {"zh-TW": "Tokenizer 與資料", "en": "Tokenizers and Data"},
           "hours": 6,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G2.18"],
           "goals": ["G4.12", "G4.13"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/token.md"], "en": []}
         },
         {
           "id": "s4-lm",
           "title": {"zh-TW": "訓練自己的小模型", "en": "Train Your Own Small LM"},
           "hours": 18,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G4.10", "G4.12"],
           "goals": ["G4.14", "G4.15", "G4.16"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/lm.md"], "en": []}
         },
         {
           "id": "s4-eval",
           "title": {"zh-TW": "評估與基準", "en": "Evaluation and Benchmarks"},
           "hours": 10,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G4.14"],
           "goals": ["G4.17", "G4.18", "G4.19"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-4/eval.md"], "en": []}
         }
       ]
     },
@@ -347,10 +347,10 @@
           "id": "s5-api",
           "title": {"zh-TW": "LLM API 工程", "en": "LLM API Engineering"},
           "hours": 8,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G2.20"],
           "goals": ["G5.1", "G5.2"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-5/api.md"], "en": []}
         },
         {
           "id": "s5-harness",
@@ -359,75 +359,52 @@
           "status": "ready",
           "prerequisites": ["G1.20", "G2.6"],
           "goals": ["G5.3", "G5.4", "G5.5", "G5.6"],
-          "content": {
-            "zh-TW": [
-              "docs/00-overview.md",
-              "docs/01-agent-loop.md",
-              "docs/02-protocol.md",
-              "docs/03-tools.md",
-              "docs/04-context.md",
-              "docs/05-memory.md",
-              "docs/06-sandbox.md",
-              "docs/07-eval.md",
-              "docs/08-roadmap.md",
-              "docs/09-from-zero.md",
-              "tutorial/README.md",
-              "tutorial/steps/step-01-loop.md",
-              "tutorial/steps/step-02-protocol.md",
-              "tutorial/steps/step-03-tools.md",
-              "tutorial/steps/step-04-guard-files.md",
-              "tutorial/steps/step-05-repair.md",
-              "tutorial/steps/step-06-context.md",
-              "tutorial/steps/step-07-eval.md",
-              "tutorial/steps/step-08-graduation.md"
-            ],
-            "en": []
-          }
+          "content": {"zh-TW": ["docs/00-overview.md", "docs/01-agent-loop.md", "docs/02-protocol.md", "docs/03-tools.md", "docs/04-context.md", "docs/05-memory.md", "docs/06-sandbox.md", "docs/07-eval.md", "docs/08-roadmap.md", "docs/09-from-zero.md", "tutorial/README.md", "tutorial/steps/step-01-loop.md", "tutorial/steps/step-02-protocol.md", "tutorial/steps/step-03-tools.md", "tutorial/steps/step-04-guard-files.md", "tutorial/steps/step-05-repair.md", "tutorial/steps/step-06-context.md", "tutorial/steps/step-07-eval.md", "tutorial/steps/step-08-graduation.md"], "en": []}
         },
         {
           "id": "s5-context",
           "title": {"zh-TW": "上下文工程與 RAG", "en": "Context Engineering and RAG"},
           "hours": 10,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G5.4"],
           "goals": ["G5.7", "G5.8"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-5/context.md"], "en": []}
         },
         {
           "id": "s5-safety",
           "title": {"zh-TW": "Agent 評測與安全", "en": "Agent Evaluation and Safety"},
           "hours": 10,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G5.5", "G2.18"],
           "goals": ["G5.9", "G5.10"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-5/safety.md"], "en": []}
         },
         {
           "id": "s5-research",
           "title": {"zh-TW": "研究方法", "en": "Research Methodology"},
           "hours": 16,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G4.19", "G5.10"],
           "goals": ["G5.11", "G5.12", "G5.13", "G5.14"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-5/research.md"], "en": []}
         },
         {
           "id": "s5-oss",
           "title": {"zh-TW": "開源與影響", "en": "Open Source and Impact"},
           "hours": 8,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G5.14"],
           "goals": ["G5.15", "G5.16"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-5/oss.md"], "en": []}
         },
         {
           "id": "s5-frontier",
           "title": {"zh-TW": "前沿地圖（選讀）", "en": "The Frontier Map (elective)"},
           "hours": 12,
-          "status": "draft",
+          "status": "ready",
           "prerequisites": ["G5.11"],
           "goals": ["G5.17", "G5.18"],
-          "content": {"zh-TW": [], "en": []}
+          "content": {"zh-TW": ["academy/content/zh-TW/stage-5/frontier.md"], "en": []}
         }
       ]
     }
@@ -451,7 +428,7 @@
     {"id": "G1.3", "level": "do", "evidence": "self", "statement": "能用 for/while 寫循環並在紙上手動推演循環變數的每一步"},
     {"id": "G1.4", "level": "know", "evidence": "self", "statement": "能解釋可變物件與不可變物件的差別並舉例說明副作用"},
     {"id": "G1.5", "level": "do", "evidence": "self", "statement": "能針對問題選用 list/tuple/dict/set 並說明理由"},
-    {"id": "G1.6", "level": "do", "evidence": "checker", "statement": "能用 dict 統計一段文字的詞頻並按次數排序輸出"},
+    {"id": "G1.6", "level": "do", "evidence": "checker", "statement": "能用 dict 統計一段文字的詞頻並按次數排序輸出", "verify": "python3 tools/academy.py verify --goal G1.6"},
     {"id": "G1.7", "level": "know", "evidence": "self", "statement": "能說出 list 與 tuple、dict 與 set 的選型理由與典型場景"},
     {"id": "G1.8", "level": "do", "evidence": "self", "statement": "能定義帶參數與返回值的函式並撰寫 docstring"},
     {"id": "G1.9", "level": "do", "evidence": "project", "statement": "完成一次真實重構：把重複程式碼提取成函式且行為不變"},
@@ -466,14 +443,14 @@
     {"id": "G1.18", "level": "do", "evidence": "self", "statement": "能用 git init/add/commit 管理一個小專案的完整歷史"},
     {"id": "G1.19", "level": "do", "evidence": "self", "statement": "能讀懂 git log/diff 並安全地回退一次錯誤提交"},
     {"id": "G1.20", "level": "build", "evidence": "project", "statement": "獨立完成 ≥100 行的命令行小工具，含 README 與 3 個使用範例"},
-    {"id": "G1.21", "level": "build", "evidence": "checker", "statement": "為自己的工具寫 ≥5 個 assert 自測並全部通過"},
+    {"id": "G1.21", "level": "build", "evidence": "checker", "statement": "為自己的工具寫 ≥5 個 assert 自測並全部通過", "verify": "python3 tools/academy.py verify --goal G1.21"},
 
     {"id": "G2.1", "level": "know", "evidence": "self", "statement": "能畫圖解釋「瀏覽器輸入 URL 之後發生什麼」（DNS/TCP/HTTP 簡化版）"},
     {"id": "G2.2", "level": "do", "evidence": "self", "statement": "能用 curl 或 Python 的 urllib 讀取一個公開 API 的回應"},
     {"id": "G2.3", "level": "know", "evidence": "self", "statement": "能解釋請求/回應結構、常見狀態碼與 header 的含義"},
     {"id": "G2.4", "level": "do", "evidence": "self", "statement": "能用 json.dumps/loads 在物件與字串之間往返轉換"},
     {"id": "G2.5", "level": "do", "evidence": "self", "statement": "能把 CSV 轉成 JSON 並反向匯出"},
-    {"id": "G2.6", "level": "do", "evidence": "checker", "statement": "能用 pytest 為一個函式寫正常/邊界/異常三類測試並全綠"},
+    {"id": "G2.6", "level": "do", "evidence": "checker", "statement": "能用 pytest 為一個函式寫正常/邊界/異常三類測試並全綠", "verify": "python3 tools/academy.py verify --goal G2.6"},
     {"id": "G2.7", "level": "do", "evidence": "self", "statement": "體驗一次 TDD 迴圈：先寫失敗測試，再讓它變綠"},
     {"id": "G2.8", "level": "know", "evidence": "self", "statement": "能解釋單元測試與整合測試的差別及測試金字塔"},
     {"id": "G2.9", "level": "do", "evidence": "self", "statement": "能用 venv 隔離環境並用 requirements.txt 鎖定依賴"},
@@ -505,7 +482,7 @@
     {"id": "G3.14", "level": "know", "evidence": "self", "statement": "能區分監督/非監督/強化學習並各舉一個真實應用"},
     {"id": "G3.15", "level": "do", "evidence": "self", "statement": "能解釋損失函數、梯度下降、學習率三者的關係"},
     {"id": "G3.16", "level": "do", "evidence": "self", "statement": "能診斷過擬合/欠擬合並提出至少兩種對策"},
-    {"id": "G3.17", "level": "do", "evidence": "checker", "statement": "能用交叉驗證與恰當指標（precision/recall/F1）評估模型"},
+    {"id": "G3.17", "level": "do", "evidence": "checker", "statement": "能用交叉驗證與恰當指標（precision/recall/F1）評估模型", "verify": "python3 tools/academy.py verify --goal G3.17"},
     {"id": "G3.18", "level": "know", "evidence": "self", "statement": "能解釋「資料洩漏」並在一個案例中識別它"},
     {"id": "G3.19", "level": "build", "evidence": "project", "statement": "完成「載入→清洗→特徵→訓練→評估→報告」的端到端 ML 專案"},
     {"id": "G3.20", "level": "build", "evidence": "project", "statement": "完成一次單變因對照實驗並正確解讀結果"},
@@ -532,7 +509,7 @@
 
     {"id": "G5.1", "level": "do", "evidence": "self", "statement": "能設計並迭代 system prompt 以穩定模型輸出格式"},
     {"id": "G5.2", "level": "do", "evidence": "self", "statement": "能管理一次任務的上下文預算並估算 token 成本"},
-    {"id": "G5.3", "level": "build", "evidence": "checker", "verify": "python3 tutorial/check.py", "statement": "完成動手營 8 步，寫出 my_harness.py 並通過全部檢查"},
+    {"id": "G5.3", "level": "build", "evidence": "checker", "verify": "python3 tools/academy.py verify --goal G5.3", "statement": "完成動手營 8 步，寫出 my_harness.py 並通過全部檢查"},
     {"id": "G5.4", "level": "do", "evidence": "self", "statement": "能講清 loop/protocol/tools/context/eval 五件套的職責與取捨"},
     {"id": "G5.5", "level": "do", "evidence": "project", "statement": "為 harness 增加一個新工具與一個新評測任務（含測試）"},
     {"id": "G5.6", "level": "build", "evidence": "project", "statement": "完成「從 0 造腦」對比實驗（RuleBrain/NgramBrain/PolicyBrain）並解讀"},
