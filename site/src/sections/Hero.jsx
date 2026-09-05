@@ -15,8 +15,8 @@ export default function Hero() {
       </h1>
       <p className="hero-sub">
         先操作一台 agent 循環，再親手寫出自己的 harness。這裡有離線範例、
-        十章概念文檔與八步動手營。延伸課程規劃了 38 個模組，目前 2 個已有教材、
-        36 個仍在編寫。
+        十章概念文檔與八步動手營，再接上 38 課繁體中文教材、練習與驗收。
+        從第一支程式，走到自己的小模型與 agent。
       </p>
 
       <div className="start-links"><a href="#machine">操作循環機器 ↓</a><a href="#path">找到可讀教材 ↓</a><a href="https://github.com/f0909172434/miniharness">原始碼 ↗</a></div>

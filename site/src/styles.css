@@ -598,3 +598,20 @@ footer {
 .lesson-catalogue { width:100%;font-size:14px; }.lesson-catalogue summary { cursor:pointer;padding:7px 0; }.lesson-catalogue ol { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 24px;padding-left:22px; }.lesson-catalogue a { overflow-wrap:anywhere; }@media(max-width:600px) { .lesson-catalogue ol { grid-template-columns:1fr; } }
 
 @media(max-width:760px) { .chapter.wrap { padding-inline:24px; } }
+
+/* 教材抽屜：38 課的入口保持可搜尋、可逐階段展開。 */
+.lesson-search { display:flex;align-items:center;gap:1rem;border-block:1px solid var(--line,#c7c1b6);padding:1.2rem 0;margin:2rem 0; }
+.lesson-search label { font-weight:700;white-space:nowrap; }
+.lesson-search input { min-width:0;flex:1;border:0;border-bottom:1px solid currentColor;background:transparent;padding:.7rem .2rem;font:inherit;color:inherit; }
+.lesson-search span { font-size:.8rem;white-space:nowrap; }
+.stage-lessons { margin-top:1.3rem; }
+.stage-lessons > summary { cursor:pointer;font-weight:650;font-size:.85rem;padding:.8rem 0;border-top:1px solid var(--line,#c7c1b6); }
+.stage-lesson-list .lesson-entry { display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.6rem;border-bottom:1px solid var(--line,#c7c1b6);padding:.9rem 0; }
+.lesson-entry small { display:block;font-size:.66rem;opacity:.75;margin-top:.3rem; }
+.lesson-entry > a { white-space:nowrap;font-size:.8rem; }
+.lesson-catalogue { width:100%; }
+.lesson-tools { display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:2rem; }
+.lesson-tools a { text-underline-offset:.25em;font-size:.9rem; }
+.stage-lessons summary:focus-visible,.lesson-search input:focus-visible { outline:2px solid currentColor;outline-offset:4px; }
+.empty-lessons { padding:2rem 0; }
+@media(max-width:600px) { .lesson-search { flex-wrap:wrap;gap:.6rem; }.lesson-search input { flex-basis:70%; }.lesson-search span { margin-left:auto; }.lesson-entry small { overflow-wrap:anywhere; } }

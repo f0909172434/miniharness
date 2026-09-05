@@ -1,7 +1,7 @@
 [project]
 name = "miniharness"
 version = "0.1.0"
-description = "MiniHarness —— 教學用最小 Agent Harness：500 行級代碼看懂模型外面那圈「工程腳手架」"
+description = "MiniHarness：以可執行範例學習 Agent Harness 的迴圈、工具、上下文與評測"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }

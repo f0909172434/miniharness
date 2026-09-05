@@ -32,8 +32,9 @@
 提交前跑：
 
 ```bash
-python3 -m pytest -q                   # 40 個測試（含 9 條 academy 結構測試）
+python3 -m pytest -q                   # 核心、課程、驗收失敗路徑
 python3 tools/academy.py validate      # manifest 結構校驗（改課程必跑）
+python3 tools/academy.py verify --reference # 教材自檢，不記錄學習者進度
 python3 demos/demo_mock.py             # 離線冒煙測試
 python3 demos/demo_from_zero.py        # 三種自製大腦對比（09 章）
 python3 demos/demo_eval.py --quiet     # 評測 3/3

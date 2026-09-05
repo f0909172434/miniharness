@@ -1,0 +1,33 @@
+{
+  "dataset": "sklearn breast_cancer; educational use",
+  "python": "3.12.14",
+  "sklearn": "1.9.0",
+  "seed": 42,
+  "train_n": 455,
+  "test_n": 114,
+  "training_cv_macro_f1": {
+    "0.1": [
+      0.9715089034676663,
+      0.9717261904761905,
+      0.9857007575757576
+    ],
+    "1.0": [
+      0.9715089034676663,
+      0.9719298245614035,
+      0.9787891557803061
+    ]
+  },
+  "selected_C": 0.1,
+  "test_macro_f1": 0.9715828832571666,
+  "test_confusion_matrix": [
+    [
+      40,
+      2
+    ],
+    [
+      1,
+      71
+    ]
+  ],
+  "limit": "One fixed split on a small bundled dataset; no clinical or general superiority claim."
+}

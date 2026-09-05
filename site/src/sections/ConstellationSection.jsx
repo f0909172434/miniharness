@@ -179,7 +179,7 @@ export default function ConstellationSection() {
       </div>
       <h2 id="sky-title">一百一十顆星的星圖</h2>
       <p className="chapter-sub">
-        每顆星是一個規劃中的學習目標，連線表示前置依賴。選擇節點查看教材狀態與
+        每顆星是一個可對照教材的學習目標，連線表示前置依賴。選擇節點查看教材狀態與
         驗收方式；已有內容的模組提供直接入口。勾選只記錄你的自評，不會執行驗收。
       </p>
 

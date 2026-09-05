@@ -21,3 +21,8 @@ site/node_modules/
 site/dist/
 
 .mimosa/
+
+# 學習者作業與本機產物
+academy/submissions/*.py
+academy/submissions/__pycache__/
+academy/examples/reference/__pycache__/
