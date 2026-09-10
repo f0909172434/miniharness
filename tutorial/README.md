@@ -30,15 +30,15 @@ python3 tutorial/check.py 3      # 只驗收第 3 步（失敗附詳細提示）
 
 | 步 | 文檔 | 你寫出什麼 | 對應概念章 |
 | --- | --- | --- | --- |
-| 1 | [step-01](steps/step-01-loop.md) | `ScriptBrain` + `run_agent` 循環骨架 | [01 循環](../../docs/01-agent-loop.md) |
-| 2 | [step-02](steps/step-02-protocol.md) | toolcall 協議與解析器 | [02 協議](../../docs/02-protocol.md) |
-| 3 | [step-03](steps/step-03-tools.md) | 工具箱 + 執行器（錯誤即文本） | [03 工具](../../docs/03-tools.md) |
-| 4 | [step-04](steps/step-04-guard-files.md) | 路徑守衛 + 讀寫文件 | [03](../../docs/03-tools.md) / [06 安全](../../docs/06-sandbox.md) |
-| 5 | [step-05](steps/step-05-repair.md) | 解析失敗的自我修復 | [01 循環](../../docs/01-agent-loop.md) |
-| 6 | [step-06](steps/step-06-context.md) | 上下文預算與成對裁剪 | [04 上下文](../../docs/04-context.md) |
-| 7 | [step-07](steps/step-07-eval.md) | 迷你評測 runner | [07 評測](../../docs/07-eval.md) |
-| 8 | [step-08](steps/step-08-graduation.md) | 🎓 畢業考：規則大腦跑通 TODO 報告 | [09 造腦](../../docs/09-from-zero.md) |
-| 9 | [step-09](steps/step-09-bonus.md) | （選做）接上真模型 | [docs/01](../../docs/01-agent-loop.md) |
+| 1 | [step-01](steps/step-01-loop.md) | `ScriptBrain` + `run_agent` 循環骨架 | [01 循環](../docs/01-agent-loop.md) |
+| 2 | [step-02](steps/step-02-protocol.md) | toolcall 協議與解析器 | [02 協議](../docs/02-protocol.md) |
+| 3 | [step-03](steps/step-03-tools.md) | 工具箱 + 執行器（錯誤即文本） | [03 工具](../docs/03-tools.md) |
+| 4 | [step-04](steps/step-04-guard-files.md) | 路徑守衛 + 讀寫文件 | [03](../docs/03-tools.md) / [06 安全](../docs/06-sandbox.md) |
+| 5 | [step-05](steps/step-05-repair.md) | 解析失敗的自我修復 | [01 循環](../docs/01-agent-loop.md) |
+| 6 | [step-06](steps/step-06-context.md) | 上下文預算與成對裁剪 | [04 上下文](../docs/04-context.md) |
+| 7 | [step-07](steps/step-07-eval.md) | 迷你評測 runner | [07 評測](../docs/07-eval.md) |
+| 8 | [step-08](steps/step-08-graduation.md) | 🎓 畢業考：規則大腦跑通 TODO 報告 | [09 造腦](../docs/09-from-zero.md) |
+| 9 | [step-09](steps/step-09-bonus.md) | （選做）接上真模型 | [docs/01](../docs/01-agent-loop.md) |
 
 ## 為什麼這樣排序
 

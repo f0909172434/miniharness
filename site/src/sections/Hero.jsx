@@ -15,11 +15,11 @@ export default function Hero() {
       </h1>
       <p className="hero-sub">
         先操作一台 agent 循環，再親手寫出自己的 harness。這裡有離線範例、
-        十章概念文檔與八步動手營，再接上 38 課繁體中文教材、練習與驗收。
-        從第一支程式，走到自己的小模型與 agent。
+        八步動手營與驗收。需要時再選讀 Python／ML 先備課程，或用 TokenScope
+        觀察模型數值；不必先修完整套課程。
       </p>
 
-      <div className="start-links"><a href="#machine">操作循環機器 ↓</a><a href="#path">找到可讀教材 ↓</a><a href="https://github.com/f0909172434/miniharness">原始碼 ↗</a></div>
+      <div className="start-links"><a href="#machine">操作循環機器 ↓</a><a href="https://github.com/f0909172434/miniharness/tree/main/tutorial">八步動手營 ↗</a><a href="https://f0909172434.github.io/tokenscope/?lang=zh-Hant">TokenScope 實驗 ↗</a><a href="#path">選讀先備教材 ↓</a></div>
 
       <svg
         className={`hero-loop${reduced ? "" : " draw-on-load"}`}

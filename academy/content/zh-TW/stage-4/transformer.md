@@ -52,3 +52,7 @@ print(weights @ V)
 回到 [課程總覽](../../../../README.md) 選下一課，或執行 `python3 tools/academy.py next`。
 
 延伸閱讀：[原始文件](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html)。
+
+## 互動實驗
+
+用 [TokenScope 實驗路線](../../../../docs/tokenscope-labs.md)先預測、再操作與核對數值，匯出後重載重播。這是補充練習，不會自動標記本課學習目標完成。
