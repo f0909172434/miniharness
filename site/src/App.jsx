@@ -14,10 +14,10 @@ export default function App() {
       </a>
       <Hero />
       <main>
-        <PathSection />
         <MachineSection />
-        <ConstellationSection />
         <CampSection />
+        <PathSection />
+        <ConstellationSection />
       </main>
       <section className="finale wrap" aria-label="尾聲">
         <p>紙還在寫，機器還在轉。</p>

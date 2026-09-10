@@ -1,28 +1,25 @@
-# MiniHarness 🔧
+# MiniHarness
 
-**用 Python 理解並實作 agent harness：離線示範、概念文檔與八步動手營。**
+**八個步驟，寫出自己的 Python agent harness。**
 
-先從 [互動循環機器](https://f0909172434.github.io/miniharness/#machine)、[終端機入門](academy/content/zh-TW/stage-0/terminal-first-steps.md) 或 [八步動手營](tutorial/README.md) 開始。
+先做一個會呼叫工具、處理錯誤與接受評測的程式。可以從[八步動手營](tutorial/README.md)直接開始，或先操作[互動循環機器](https://f0909172434.github.io/miniharness/#machine)。不需要 API Key，也不需要先讀完整套課程。
 
-**內容狀態（2026-09）：** MiniAcademy 規劃了 6 階段、38 個模組、110 個學習目標；38 個模組皆有繁體中文正文、練習與驗收指引；`ready` 指教材可讀，不代表學習者通過或已經外部教學驗證。現有 ready 教材為繁體中文，英文正文尚未提供。Python harness 執行時僅使用標準庫；測試與網站另有開發依賴。
+```bash
+python3 demos/demo_mock.py       # 先看一次完整的離線循環
+python3 tutorial/check.py        # 查看八步工作坊的驗收規格
+```
 
-> 上層是 **MiniAcademy**：6 階段 / 38 模塊 / 110 條可驗證 Goal 的課程地圖
-> （[academy/](academy/README.md)），配 `tools/academy.py` 提供規劃、
-> 進度與漏洞掃描，多語言覆蓋一條命令可查；
-> 下層是 **MiniHarness**：其中第 5 階段的核心教材——用 9 個模塊、約 1600 行
-> 手搓一個 Agent Harness，配 10 章概念文檔、8 步動手營與 4 個 demo。
-> 倉庫定位：**智能在模型，工程在 harness，路線在 academy。**
+需要 Python 3.9+；harness 執行時只使用標準函式庫。網站、測試與選修的模型訓練範例有各自的開發依賴。
 
-本項目受 [minimind](https://github.com/jingyaogong/minimind)（造大腦）啟發，
-教的是它的對偶問題：**造馬具**。章節組織參考了微軟
-[AI for Beginners](https://github.com/microsoft/AI-For-Beginners) 的課程化風格；
-設計思想上向 [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent)
-（"the 100-line agent"）與 Anthropic
-[Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) 致敬。
+| 你現在想做什麼 | 入口 |
+|---|---|
+| 直接寫一個 agent harness | [八步動手營](tutorial/README.md)：循環、協議、工具、路徑守衛、修復、上下文、評測與整合 |
+| 看模型數值如何改變 | [TokenScope 實驗路線](docs/tokenscope-labs.md)：attention、取樣與 BPE，可保存重播 |
+| 補 Python／工程／ML 基礎 | [MiniAcademy 教材索引](academy/README.md)：依缺口選讀，不必全修才能使用 harness |
 
----
+**教材狀態：** 38 個模組均有繁體中文正文、練習與驗收指引；英文課程正文尚未提供。`ready` 指教材可讀，不代表學習者通過或已完成外部教學驗證。課程清單以 `academy/manifest.json` 為準。
 
-新入口：[38 課教材索引](academy/README.md) · [自測與驗收工具](academy/TOOLS.md) · [作業契約](academy/submissions/README.md) · [專案交付清單](academy/ASSESSMENT.md) · [導師手冊](academy/MENTOR.md)。新增可執行的 ML 流水線與迷你 Transformer 教學參考；其套件與 CPU 執行環境獨立於 harness。
+[自測與驗收](academy/TOOLS.md) · [作業契約](academy/submissions/README.md) · [導師手冊](academy/MENTOR.md)
 
 ## 學院：六階段地圖（academy/）
 
@@ -236,3 +233,12 @@ miniharness/
 ## License
 
 [MIT](LICENSE) © 2026 MiniHarness contributors
+
+## 靈感與致謝
+
+本項目受 [minimind](https://github.com/jingyaogong/minimind)（造大腦）啟發，
+教的是它的對偶問題：**造馬具**。章節組織參考了微軟
+[AI for Beginners](https://github.com/microsoft/AI-For-Beginners) 的課程化風格；
+設計思想上向 [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent)
+（"the 100-line agent"）與 Anthropic
+[Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) 致敬。
